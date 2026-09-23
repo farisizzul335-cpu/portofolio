@@ -1,0 +1,2631 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faris Izzul Haq, S.Pd. — Portfolio Personal & Profesional</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              900: '#0c4a6e',
+            },
+            accent: {
+              emerald: '#10b981',
+              amber: '#f59e0b',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 9999px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: rgba(71, 85, 105, 0.5);
+    }
+
+    /* Subtle Animated Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee-infinite {
+      display: flex;
+      width: 200%;
+      animation: marquee 28s linear infinite;
+    }
+    .animate-marquee-infinite:hover {
+      animation-play-state: paused;
+    }
+
+    /* Custom Cursor Styles */
+    @media (pointer: fine) {
+      .cursor-dot {
+        pointer-events: none;
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background-color: #0284c7;
+        border-radius: 50%;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.08s ease-out, opacity 0.2s ease;
+      }
+      .cursor-outline {
+        pointer-events: none;
+        position: fixed;
+        width: 38px;
+        height: 38px;
+        border: 1.5px solid rgba(2, 132, 199, 0.5);
+        border-radius: 50%;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.18s ease-out, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+      }
+      .cursor-hover .cursor-outline {
+        transform: translate(-50%, -50%) scale(1.6);
+        background-color: rgba(2, 132, 199, 0.08);
+        border-color: #0284c7;
+      }
+    }
+
+    /* Noise Texture Overlay */
+    .noise-bg {
+      background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    .dark .noise-bg {
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* Smooth Fade & Slide Reveal Utility Classes */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #cvModal, #cvModal * {
+        visibility: visible;
+      }
+      #cvModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        padding: 0 !important;
+      }
+      #cvModalHeaderActions, #cvModalFooterActions {
+        display: none !important;
+      }
+      #cvDocumentPrintArea {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        color: black !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300 relative overflow-x-hidden min-h-screen">
+  
+  <div id="cursorDot" class="cursor-dot hidden md:block"></div>
+  <div id="cursorOutline" class="cursor-outline hidden md:block"></div>
+
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-700 ease-out">
+    <div class="relative flex flex-col items-center space-y-4">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 via-sky-400 to-indigo-500 p-0.5 animate-pulse shadow-xl shadow-sky-500/20">
+        <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-white font-bold text-xl tracking-tighter">
+          FIH
+        </div>
+      </div>
+      <div class="text-center">
+        <p class="text-xs uppercase font-mono tracking-widest text-slate-400">Memuat Data Portofolio</p>
+        <p class="text-lg font-bold text-white tracking-tight mt-1" id="preloadName">Faris Izzul Haq, S.Pd.</p>
+      </div>
+      <div class="w-48 h-1 bg-slate-800 rounded-full overflow-hidden mt-3">
+        <div id="preloadBar" class="h-full bg-brand-500 w-0 transition-all duration-500 ease-out"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo & Name -->
+        <a href="#hero" class="flex items-center gap-3 group focus:outline-none" aria-label="Beranda">
+          <div class="w-10 h-10 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 flex items-center justify-center font-bold text-sm shadow-md transition-transform group-hover:scale-105">
+            FIH
+          </div>
+          <div class="flex flex-col">
+            <span class="font-bold text-sm sm:text-base tracking-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+              Faris Izzul Haq
+            </span>
+            <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400 -mt-0.5">
+              Cumlaude UM • BNSP Certified
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="hidden md:flex items-center gap-1 bg-white/75 dark:bg-slate-900/75 px-4 py-1.5 rounded-full border border-slate-200/80 dark:border-slate-800/80 shadow-sm backdrop-blur-md">
+          <a href="#tentang" class="px-3 py-1.5 text-xs font-medium rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Tentang</a>
+          <a href="#keahlian" class="px-3 py-1.5 text-xs font-medium rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Keahlian</a>
+          <a href="#pengalaman" class="px-3 py-1.5 text-xs font-medium rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Pengalaman</a>
+          <a href="#proyek" class="px-3 py-1.5 text-xs font-medium rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Karya & HAKI</a>
+          <a href="#sertifikasi" class="px-3 py-1.5 text-xs font-medium rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Sertifikasi</a>
+          <a href="#kontak" class="px-3 py-1.5 text-xs font-medium rounded-full text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Kontak</a>
+        </nav>
+
+        <!-- Action Buttons: Theme Toggle, AI & CV Button -->
+        <div class="flex items-center gap-2">
+          <!-- AI Assistant Quick Trigger -->
+          <button id="openAiModalBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-indigo-200 dark:border-indigo-800 bg-indigo-50/90 dark:bg-indigo-950/80 hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 transition-all shadow-sm shrink-0 whitespace-nowrap" title="Tanya AI tentang profil Faris Izzul Haq">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+            </span>
+            <i data-lucide="bot" class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400"></i>
+            <span class="hidden sm:inline">Tanya AI</span>
+          </button>
+
+          <!-- Direct CV Action Button -->
+          <button id="openCvModalBtn" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-brand-200 dark:border-brand-800 bg-brand-50/80 dark:bg-brand-950/70 hover:bg-brand-100 dark:hover:bg-brand-900 text-brand-700 dark:text-brand-300 transition-all shadow-sm hover:shadow shrink-0 whitespace-nowrap" title="Buka Dokumen CV Resmi Faris Izzul Haq">
+            <i data-lucide="file-text" class="w-3.5 h-3.5 text-brand-600 dark:text-brand-400"></i>
+            <span class="whitespace-nowrap">CV Saya</span>
+          </button>
+
+          <!-- Dark / Light Mode Toggle -->
+          <button id="themeToggleBtn" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm" aria-label="Ubah Mode Tampilan">
+            <i data-lucide="moon" id="themeIconMoon" class="w-4 h-4 hidden dark:block"></i>
+            <i data-lucide="sun" id="themeIconSun" class="w-4 h-4 block dark:hidden"></i>
+          </button>
+
+          <!-- Hubungi CTA Button -->
+          <a href="#kontak" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-brand-600 hover:bg-brand-700 text-white shadow-sm transition-all hover:shadow-md hover:shadow-brand-500/20 active:scale-95">
+            <span>Hubungi</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button id="mobileMenuBtn" class="md:hidden w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center text-slate-700 dark:text-slate-300" aria-label="Buka Menu">
+            <i data-lucide="menu" id="hamburgerIcon" class="w-5 h-5"></i>
+            <i data-lucide="x" id="closeIcon" class="w-5 h-5 hidden"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileMenuDrawer" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-4 space-y-2 shadow-xl">
+      <a href="#tentang" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Tentang</a>
+      <a href="#keahlian" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Keahlian & Layanan</a>
+      <a href="#pengalaman" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Pengalaman Kerja</a>
+      <a href="#proyek" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Karya, Game & HAKI</a>
+      <a href="#sertifikasi" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Sertifikasi & Lisensi</a>
+      <a href="#ai-assistant" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950">AI Copilot & Tanya CV</a>
+      <a href="#kontak" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Hubungi Saya</a>
+      <div class="pt-2 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+        <button id="openAiModalBtnMobile" class="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300">
+          <i data-lucide="sparkles" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
+          <span>Tanya Asisten AI Faris</span>
+        </button>
+        <button id="openCvModalBtnMobile" class="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg border border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300">
+          <i data-lucide="file-text" class="w-4 h-4 text-brand-600 dark:text-brand-400"></i>
+          <span>Buka Dokumen CV Saya</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="noise-bg">
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+      <!-- Background Ambient Glow -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[320px] bg-gradient-to-tr from-brand-500/15 to-indigo-500/10 dark:from-brand-500/20 dark:to-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Text Column (Left) -->
+          <div class="lg:col-span-8 space-y-6 text-left">
+            
+            <!-- Live Status Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/70 dark:bg-emerald-950/40 backdrop-blur-sm text-emerald-800 dark:text-emerald-300 text-xs font-medium">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+              <span class="font-mono" id="heroBadgeStatus">Tersertifikasi BNSP • Cumlaude Universitas Negeri Malang (IPK 3.78)</span>
+            </div>
+
+            <!-- Main Heading with High Impact Typography -->
+            <div class="space-y-3">
+              <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
+                Membangun Efisiensi Melalui <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-sky-500 to-indigo-600 dark:from-sky-400 dark:via-blue-400 dark:to-indigo-300">Data, Otomatisasi & Pemberdayaan</span>.
+              </h1>
+              <p class="text-base sm:text-xl font-normal text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed" id="heroProfessionalSummary">
+                Lulusan Sarjana Pendidikan Nonformal Universitas Negeri Malang (IPK 3.78/Cumlaude) dengan spesialisasi administrasi terstruktur dan pengolahan data menggunakan Microsoft Excel lanjutan serta Google Workspace. Berpengalaman mengelola administrasi operasional, rantai distribusi, serta otomatisasi rekapitulasi data penjualan berbasis Telegram dan Google Sheets. Individu disiplin, teliti, dan adaptif dalam mengoptimalkan efisiensi alur kerja operasional.
+              </p>
+            </div>
+
+            <!-- Key Metric Counters -->
+            <div class="grid grid-cols-3 gap-3 pt-2">
+              <div class="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
+                <span class="block text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-mono tracking-tight" id="metricGpa">3.78</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">IPK Cumlaude (S.Pd.)</span>
+              </div>
+              <div class="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
+                <span class="block text-2xl sm:text-3xl font-bold text-brand-600 dark:text-brand-400 font-mono tracking-tight">BNSP</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Fasilitator Resmi</span>
+              </div>
+              <div class="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm">
+                <span class="block text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-mono tracking-tight">1 HAKI</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kemenkumham RI</span>
+              </div>
+            </div>
+
+            <!-- Call to Actions -->
+            <div class="flex flex-wrap items-center gap-3 pt-3">
+              <a id="heroWaBtn" href="https://wa.me/6288994158604?text=Halo%20Faris%20Izzul%20Haq,%20saya%20tertarik%20dengan%20profil%20dan%20portofolio%20Anda." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold shadow-md shadow-brand-500/25 transition-all hover:-translate-y-0.5 active:translate-y-0">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Hubungi via WhatsApp</span>
+              </a>
+
+              <!-- AI Copilot Hero CTA -->
+              <a href="#ai-assistant" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-indigo-200 dark:border-indigo-800/80 bg-indigo-50/80 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/80 text-indigo-700 dark:text-indigo-300 text-sm font-semibold transition-all hover:-translate-y-0.5 shadow-sm">
+                <i data-lucide="bot" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
+                <span>Tanya AI Faris</span>
+              </a>
+
+              <a id="heroEmailBtn" href="mailto:farisizzul335@gmail.com" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-all hover:-translate-y-0.5">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>Kirim Email</span>
+              </a>
+
+              <button id="copyEmailQuickBtn" class="inline-flex items-center gap-1.5 px-3 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all text-xs" title="Salin Email">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+                <span id="copyEmailText">Salin Email</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Profile Visual Card (Right) -->
+          <div class="lg:col-span-4 flex justify-center">
+            <div class="relative w-full max-w-sm">
+              <div class="absolute -inset-1 rounded-2xl bg-gradient-to-b from-brand-500 to-indigo-600 opacity-20 blur-lg transition duration-1000 group-hover:opacity-40"></div>
+              
+              <div class="relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xl overflow-hidden">
+                <div class="flex items-center justify-between pb-3.5 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-xs font-mono font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> PROFIL VERIFIKASI
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Data Resmi CV
+                  </span>
+                </div>
+
+                <div class="mt-4 flex flex-col items-center text-center">
+                  <div class="relative group/avatar cursor-pointer" id="avatarUploadContainer" title="Klik untuk mengunggah atau mengganti pas foto Anda">
+                    <div class="relative w-28 h-36 sm:w-32 sm:h-40 rounded-xl overflow-hidden shadow-lg ring-4 ring-slate-100 dark:ring-slate-800 border-2 border-red-600/60 bg-[#c01b2a] flex items-center justify-center transition-transform group-hover/avatar:scale-[1.02]">
+                      <img id="cardProfileImg" alt="Pas Foto Faris Izzul Haq" class="w-full h-full object-cover hidden">
+
+                      <svg id="cardProfileSvg" viewBox="0 0 200 250" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <linearGradient id="redStudioBg" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#cf1b29" />
+                            <stop offset="60%" stop-color="#b51522" />
+                            <stop offset="100%" stop-color="#8a0c16" />
+                          </linearGradient>
+                          <linearGradient id="skinTone" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#f8cfb5" />
+                            <stop offset="100%" stop-color="#e2b192" />
+                          </linearGradient>
+                          <linearGradient id="suitGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#1f242d" />
+                            <stop offset="100%" stop-color="#0c0e12" />
+                          </linearGradient>
+                        </defs>
+                        <rect width="200" height="250" fill="url(#redStudioBg)" />
+                        <circle cx="100" cy="90" r="85" fill="#ffffff" opacity="0.08" />
+
+                        <path d="M12 250 L12 220 Q40 180 80 182 L120 182 Q160 180 188 220 L188 250 Z" fill="url(#suitGrad)" />
+                        <polygon points="100,195 72,158 92,156 100,172 108,156 128,158" fill="#f8fafc" />
+                        <polygon points="95,172 105,172 107,185 100,240 93,185" fill="#090a0f" />
+                        <polygon points="94,170 106,170 108,178 100,183 92,178" fill="#181a20" />
+                        <path d="M42 250 L70 184 L94 220 L76 250 Z" fill="#14171d" />
+                        <path d="M158 250 L130 184 L106 220 L124 250 Z" fill="#14171d" />
+
+                        <path d="M84 135 L84 165 Q100 174 116 165 L116 135 Z" fill="#dfa887" />
+                        <path d="M87 155 Q100 166 113 155 L113 162 Q100 172 87 162 Z" fill="#c98c6b" opacity="0.6" />
+
+                        <ellipse cx="100" cy="115" rx="34" ry="42" fill="url(#skinTone)" />
+                        <ellipse cx="65" cy="118" rx="6" ry="11" fill="#e0a98b" />
+                        <ellipse cx="135" cy="118" rx="6" ry="11" fill="#e0a98b" />
+
+                        <path d="M64 105 C62 82 76 60 100 58 C124 60 138 82 136 105 C132 94 125 80 100 80 C75 80 68 94 64 105 Z" fill="#15171c" />
+                        <path d="M64 106 Q62 90 70 78 Q88 64 116 68 Q135 72 136 98 Q134 84 122 74 Q100 68 82 78 Q70 88 64 106 Z" fill="#252a33" opacity="0.7" />
+
+                        <path d="M76 98 Q86 94 94 97" stroke="#1c1f26" stroke-width="2.6" stroke-linecap="round" fill="none" />
+                        <path d="M124 98 Q114 94 106 97" stroke="#1c1f26" stroke-width="2.6" stroke-linecap="round" fill="none" />
+
+                        <ellipse cx="85" cy="108" rx="4.5" ry="3.2" fill="#1a1d24" />
+                        <circle cx="86" cy="107" r="1.1" fill="#ffffff" />
+                        <ellipse cx="115" cy="108" rx="4.5" ry="3.2" fill="#1a1d24" />
+                        <circle cx="116" cy="107" r="1.1" fill="#ffffff" />
+
+                        <path d="M99 108 L98 122 Q100 125 104 123" stroke="#c58b6b" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                        <path d="M91 133 Q100 138 109 133" stroke="#a4584e" stroke-width="2" stroke-linecap="round" fill="none" />
+                      </svg>
+
+                      <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/avatar:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
+                        <i data-lucide="camera" class="w-5 h-5 mb-1 text-brand-300"></i>
+                        <span class="text-[10px] font-semibold leading-tight">Unggah / Ganti Foto</span>
+                      </div>
+                    </div>
+
+                    <button type="button" id="triggerUploadBtn" class="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-md border-2 border-white dark:border-slate-900 flex items-center justify-center transition-transform hover:scale-110" title="Pilih file pas foto dari perangkat">
+                      <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+
+                  <input type="file" id="pasFotoFileInput" accept="image/*" class="hidden">
+
+                  <div class="mt-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-900 text-red-700 dark:text-red-300 text-[10px] font-mono font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span>
+                    <span>PAS FOTO RESMI (3x4)</span>
+                  </div>
+
+                  <div class="mt-2 space-y-0.5">
+                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight" id="cardProfileName">
+                      Faris Izzul Haq
+                    </h3>
+                    <p class="text-xs font-semibold text-brand-600 dark:text-brand-400" id="cardProfileDegree">
+                      Sarjana Pendidikan (S.Pd.)
+                    </p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1 pt-0.5">
+                      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-500 shrink-0"></i>
+                      <span id="cardProfileLocation">Wajak, Malang, Jawa Timur</span>
+                    </p>
+                  </div>
+
+                  <button id="resetPhotoBtn" class="hidden mt-1.5 text-[10px] font-mono text-slate-400 hover:text-rose-500 underline transition-colors">
+                    Reset ke Foto Default
+                  </button>
+                </div>
+
+                <div class="mt-4 space-y-2 text-xs">
+                  <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                    <span class="text-slate-500 dark:text-slate-400">Universitas</span>
+                    <span class="font-semibold text-slate-800 dark:text-slate-200">Universitas Negeri Malang</span>
+                  </div>
+                  <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                    <span class="text-slate-500 dark:text-slate-400">Sertifikasi BNSP</span>
+                    <span class="font-semibold text-emerald-600 dark:text-emerald-400">Fasilitator Pemberdayaan</span>
+                  </div>
+                  <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                    <span class="text-slate-500 dark:text-slate-400">Keahlian Unggulan</span>
+                    <span class="font-semibold text-slate-800 dark:text-slate-200">MS Excel & Apps Script</span>
+                  </div>
+                </div>
+
+                <a href="#pengalaman" class="mt-4 w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                  <span>Lihat Rekam Jejak Karir</span>
+                  <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Marquee -->
+    <div class="border-y border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md overflow-hidden py-3">
+      <div class="animate-marquee-infinite text-xs sm:text-sm font-mono tracking-wider font-semibold uppercase text-slate-700 dark:text-slate-300 flex items-center space-x-8">
+        <span class="flex items-center gap-2"><i data-lucide="sparkle" class="w-3.5 h-3.5 text-brand-500"></i> Administrasi Data Terstruktur</span>
+        <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-3.5 h-3.5 text-indigo-500"></i> Otomatisasi Telegram to Google Sheet</span>
+        <span class="flex items-center gap-2"><i data-lucide="award" class="w-3.5 h-3.5 text-emerald-500"></i> BNSP Fasilitator Pemberdayaan</span>
+        <span class="flex items-center gap-2"><i data-lucide="file-check-2" class="w-3.5 h-3.5 text-amber-500"></i> HAKI Program Komputer RI #000877188</span>
+        <span class="flex items-center gap-2"><i data-lucide="table-2" class="w-3.5 h-3.5 text-blue-500"></i> Microsoft Excel Advanced & Pivot Table</span>
+        <span class="flex items-center gap-2"><i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-sky-500"></i> Cumlaude Universitas Negeri Malang (3.78)</span>
+        <span class="flex items-center gap-2"><i data-lucide="users" class="w-3.5 h-3.5 text-emerald-500"></i> Hubungan Masyarakat & Sosialisasi PKBM</span>
+        <!-- Duplicate loop block -->
+        <span class="flex items-center gap-2"><i data-lucide="sparkle" class="w-3.5 h-3.5 text-brand-500"></i> Administrasi Data Terstruktur</span>
+        <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-3.5 h-3.5 text-indigo-500"></i> Otomatisasi Telegram to Google Sheet</span>
+        <span class="flex items-center gap-2"><i data-lucide="award" class="w-3.5 h-3.5 text-emerald-500"></i> BNSP Fasilitator Pemberdayaan</span>
+        <span class="flex items-center gap-2"><i data-lucide="file-check-2" class="w-3.5 h-3.5 text-amber-500"></i> HAKI Program Komputer RI #000877188</span>
+        <span class="flex items-center gap-2"><i data-lucide="table-2" class="w-3.5 h-3.5 text-blue-500"></i> Microsoft Excel Advanced & Pivot Table</span>
+        <span class="flex items-center gap-2"><i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-sky-500"></i> Cumlaude Universitas Negeri Malang (3.78)</span>
+        <span class="flex items-center gap-2"><i data-lucide="users" class="w-3.5 h-3.5 text-emerald-500"></i> Hubungan Masyarakat & Sosialisasi PKBM</span>
+      </div>
+    </div>
+
+    <!-- Section 01: Profil & Tentang -->
+    <section id="tentang" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
+      <div class="space-y-4 max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-brand-600 dark:text-brand-400">
+          <span class="w-6 h-[1px] bg-brand-500"></span> 01. Profil & Latar Belakang
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Menghubungkan Ketelitian Data dengan Dampak Sosial di Masyarakat
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          Seluruh informasi di bawah ini bersumber langsung dari rekam jejak resmi Faris Izzul Haq, mencakup pendidikan tinggi, sertifikasi profesi nasional, dan dedikasi di bidang operasional serta pendidikan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-7 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm space-y-6">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <i data-lucide="user" class="w-5 h-5 text-brand-600"></i>
+            <span>Ringkasan Profesional</span>
+          </h3>
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
+            Lulusan Sarjana Pendidikan Nonformal Universitas Negeri Malang (IPK 3.78/Cumlaude) dengan spesialisasi <strong>administrasi terstruktur dan pengolahan data</strong> menggunakan Microsoft Excel lanjutan serta Google Workspace.
+          </p>
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
+            Berpengalaman mengelola administrasi operasional, rantai distribusi, serta otomatisasi rekapitulasi data penjualan berbasis Telegram dan Google Sheets. Tersertifikasi BNSP dan memiliki lisensi Hak Kekayaan Intelektual (HAKI) dari Kemenkumham RI. Merupakan individu disiplin, teliti, dan adaptif dalam mengoptimalkan efisiensi alur kerja operasional.
+          </p>
+
+          <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+            <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-3">Nilai Kerja Inti</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200">Kedisiplinan Tinggi</span>
+              <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200">Manajemen Prioritas & Waktu</span>
+              <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200">Pemecahan Masalah (Problem Solving)</span>
+              <span class="px-3 py-1 text-xs font-medium rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200">Belajar Hal Baru (Fast Learner)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-6">
+          <div class="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 dark:opacity-5 text-brand-600">
+              <i data-lucide="graduation-cap" class="w-32 h-32"></i>
+            </div>
+            
+            <div class="flex items-center gap-2 text-xs font-mono text-brand-600 dark:text-brand-400 font-semibold mb-2">
+              <i data-lucide="calendar" class="w-4 h-4"></i> 2021 — 2026
+            </div>
+            
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Universitas Negeri Malang (UM)</h3>
+            <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Malang, Jawa Timur, Indonesia</p>
+            
+            <div class="mt-4 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+              <span class="block text-xs text-slate-500 dark:text-slate-400">Gelar & Program Studi:</span>
+              <span class="font-bold text-slate-900 dark:text-white text-sm">Sarjana Pendidikan (S.Pd.)</span>
+              <span class="block text-xs text-slate-600 dark:text-slate-300">Pendidikan Nonformal — IPK 3.78 / 4.00 (Dengan Pujian / Cumlaude)</span>
+            </div>
+
+            <div class="mt-4 space-y-2">
+              <span class="text-xs font-semibold text-slate-700 dark:text-slate-300 block">Judul Skripsi:</span>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 italic bg-amber-500/5 dark:bg-amber-400/5 p-3 rounded-lg border-l-2 border-amber-500">
+                "Pola Pembelajaran Informal Pangkas Rambut Di Barberschool Turen"
+              </p>
+            </div>
+
+            <div class="mt-4 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-500 mt-0.5 shrink-0"></i>
+              <span>Pencapaian: Merancang dan memimpin proyek pengembangan game edukatif berbasis web serta video edukatif sebagai Proyek Kuliah.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 02: Keahlian -->
+    <section id="keahlian" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="space-y-4 max-w-3xl mb-12">
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-brand-600 dark:text-brand-400">
+            <span class="w-6 h-[1px] bg-brand-500"></span> 02. Keahlian & Layanan Profesional
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Kompetensi Teknis Terverifikasi & Keahlian Terapan
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+            Kombinasi keahlian teknis pengolahan data, otomatisasi alur kerja, hubungan masyarakat, dan fasilitasi lapangan yang siap memberikan dampak langsung.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Administrasi Data & Microsoft Excel</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Tersertifikasi dalam Excel: Foundation to Mastery oleh Entrefine. Menguasai rumus lanjutan, manipulasi dan verifikasi data skala menengah ke atas.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">XLOOKUP</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Logical IF / IFS</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SUMIFS & COUNTIFS</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Pivot Table</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="bot" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Otomatisasi Input & Sistem Digital</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Membangun integrasi data nirkabel dari bot Telegram ke Google Sheets melalui Google Apps Script guna merekapitulasi transaksi harian secara instan.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Telegram Bot API</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Google Apps Script</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Google Workspace</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Cloud Sheet Sync</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="users-round" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Fasilitator & Hubungan Masyarakat</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Tersertifikasi BNSP dalam pendampingan warga dan pemuda putus sekolah untuk kembali mengakses hak belajar (Kejar Paket) serta jembatan kemitraan antarlembaga.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Fasilitasi BNSP</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Humas & Sosialisasi</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Konseling Pendidikan</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Komunikasi Publik</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="monitor" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Pengajar Komputer & Administrasi</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Pengalaman mengajar mata pelajaran Ilmu Komputer dan memberikan pendampingan intensif bagi siswa dalam persiapan seleksi masuk perguruan tinggi (PTN/PTS).
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Pengajaran Komputer</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Bimbingan PTN/PTS</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Pengarsipan Kelas</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="w-12 h-12 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="truck" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Operasional Distribusi Rantai Pasok</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Mengelola operasional lapangan, manajemen distribusi komoditas pangan ke rumah makan, dan interaksi rantai pasok dengan peternak rekanan guna menjaga stabilitas suplai.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Distribusi Pangan</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Manajemen Rantai Pasok</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Ketepatan Pengiriman</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="clapperboard" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Penyutradaraan & Tata Kelola Proyek</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Memimpin produksi video edukatif dari ide kreatif hingga pascaproduksi, serta bertindak sebagai wakil ketua penyelenggaraan event skala sekolah (P5 Kurikulum Merdeka).
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sutradara Video Edukasi</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Wakil Ketua P5</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Publikasi & Dokumentasi</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 03: Pengalaman Kerja -->
+    <section id="pengalaman" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
+      <div class="space-y-4 max-w-3xl mb-14">
+        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-brand-600 dark:text-brand-400">
+          <span class="w-6 h-[1px] bg-brand-500"></span> 03. Pengalaman Kerja & Magang
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Rekam Jejak Nyata & Riwayat Tugas
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Setiap butir tugas dan pencapaian di bawah ini merupakan data faktual yang tercatat resmi pada riwayat karir Faris Izzul Haq.
+        </p>
+      </div>
+
+      <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 sm:ml-8 space-y-12">
+        
+        <!-- Experience 1: Magang -->
+        <div class="relative pl-8 sm:pl-10 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-600 border-4 border-slate-50 dark:border-slate-950 group-hover:scale-125 transition-transform"></div>
+          
+          <div class="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all hover:border-brand-500/50">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-100 text-brand-800 dark:bg-brand-950 dark:text-brand-300">
+                Januari — April 2024 (Magang)
+              </span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Kec. Sukun, Kota Malang
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Staff Humas</h3>
+            <p class="text-sm font-medium text-brand-600 dark:text-brand-400 mb-4">PKBM Ki Hadjar Dewantara</p>
+
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Melaksanakan sosialisasi ke masyarakat untuk merekrut dan mengajak anak putus sekolah agar mengikuti program Kejar Paket A, B dan C.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Bertindak sebagai koordinator utama dalam komunikasi antara tim magang, Direktur PKBM, dan Dosen Pembimbing Lapangan.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Mengelola dan menginput data siswa menggunakan rumus Microsoft Excel lanjutan (Rumus Dasar, XLOOKUP, Fungsi Logika) guna memastikan keakuratan administrasi akademik.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Mengelola Google Workspace untuk sistem pengarsipan dokumen kelas yang lebih rapi dan terstruktur.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Mengajar mata pelajaran Ilmu Komputer dan secara proaktif memberikan pendampingan bagi siswa.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Experience 2: Supplier Unggas -->
+        <div class="relative pl-8 sm:pl-10 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-blue-500 dark:bg-blue-600 border-4 border-slate-50 dark:border-slate-950 group-hover:scale-125 transition-transform"></div>
+          
+          <div class="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all hover:border-blue-500/50">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300">
+                2021 — Sekarang (Part-time Kuliah)
+              </span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Blayu, Wajak
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Staff Distribusi</h3>
+            <p class="text-sm font-medium text-brand-600 dark:text-brand-400 mb-4">Supplier Unggas (Ayam dan Bebek)</p>
+
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Mengelola distribusi harian komoditas unggas mentah ke mitra rumah makan dengan ketepatan waktu pengiriman.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Menjalin komunikasi rantai pasok dengan peternak rekanan guna menjaga stabilitas suplai harian.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Merekapitulasi total penjualan harian menggunakan otomisasi Telegram to Google Sheet.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Experience 3: UMKM Warung -->
+        <div class="relative pl-8 sm:pl-10 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-amber-500 dark:bg-amber-600 border-4 border-slate-50 dark:border-slate-950 group-hover:scale-125 transition-transform"></div>
+          
+          <div class="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all hover:border-amber-500/50">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">
+                2021 — Sekarang (Part-time Kuliah)
+              </span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Pasar Tradisional Wajak
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Staff Operasional</h3>
+            <p class="text-sm font-medium text-brand-600 dark:text-brand-400 mb-4">UMKM Warung</p>
+
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Membantu mengelola operasional usaha minuman keluarga pada akhir pekan dan libur semester, dimulai sejak pukul 02:00 - 05:00 AM.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Melayani customer di tempat dan melakukan pengiriman minuman di berbagai gerai di pasar.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Menyiapkan, mencuci, dan memoles gelas agar kuota gelas bersih di rak siap pakai saat pesanan membludak.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Experience 4: UMKM Ritel Snack -->
+        <div class="relative pl-8 sm:pl-10 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-slate-50 dark:border-slate-950 group-hover:scale-125 transition-transform"></div>
+          
+          <div class="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm transition-all hover:border-slate-500/50">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300">
+                2020 — 2021
+              </span>
+              <span class="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Pasar Tradisional Wajak
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Staff Penjualan dan Operasional</h3>
+            <p class="text-sm font-medium text-brand-600 dark:text-brand-400 mb-4">UMKM Ritel Snack</p>
+
+            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Melakukan opening closing gerai dan penataan barang sesuai tempat.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Melakukan penjualan produk snack dari jam 04:00 - 11:00 AM.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i>
+                <span>Mengidentifikasi produk terlaris dan melakukan pemesanan dari sales.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 04: Proyek, Karya & Kepanitiaan -->
+    <section id="proyek" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div class="space-y-3 max-w-2xl">
+            <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-brand-600 dark:text-brand-400">
+              <span class="w-6 h-[1px] bg-brand-500"></span> 04. Proyek, Karya & Kepanitiaan
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Inovasi Digital, HAKI & Manajemen Acara
+            </h2>
+            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+              Proyek nyata yang telah dirancang, dipimpin, dan diselesaikan dengan bukti legalitas Hak Kekayaan Intelektual resmi.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2 bg-white dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 self-start md:self-auto">
+            <button class="project-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 text-white" data-filter="all">Semua</button>
+            <button class="project-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-filter="tech">Teknologi & HAKI</button>
+            <button class="project-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-filter="event">Acara & Edukasi</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projectsContainer">
+          
+          <div class="project-card tech p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/50">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> HAKI Resmi Kemenkumham RI
+                </span>
+                <span class="font-mono text-xs text-slate-400">2025</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                Kreator Program Komputer "Reverse Word"
+              </h3>
+              <p class="text-xs font-mono text-brand-600 dark:text-brand-400 mt-1 mb-3">No. Pencatatan: 000877188</p>
+              
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Mengembangkan game edukatif interaktif berbasis web yang berfokus pada pelatihan kognitif kata. Berhasil memperoleh sertifikat Hak Cipta resmi dari Kementerian Hukum RI.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
+                <i data-lucide="gamepad-2" class="w-4 h-4 text-brand-500"></i> Game Edukatif Web
+              </span>
+              <span class="text-xs font-semibold text-brand-600 dark:text-brand-400 flex items-center gap-1">
+                Tercatat Negara <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card event p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 border border-rose-200/50 dark:border-rose-800/50">
+                  <i data-lucide="video" class="w-3.5 h-3.5"></i> Produksi Kreatif
+                </span>
+                <span class="font-mono text-xs text-slate-400">Desember 2023</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                Sutradara & Koordinator Tim Video Edukasi
+              </h3>
+              <p class="text-xs font-mono text-slate-500 mt-1 mb-3">Proyek Akademik Universitas Negeri Malang</p>
+              
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Menggagas ide cerita kreatif, mendistribusikan peran kepada seluruh kru, dan memimpin keseluruhan proses produksi dari pra-produksi, syuting hingga penyelesaian akhir video edukasi.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
+                <i data-lucide="clapperboard" class="w-4 h-4 text-rose-500"></i> Directing & Creative
+              </span>
+              <span class="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+                Selesai 100%
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card event p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50">
+                  <i data-lucide="users" class="w-3.5 h-3.5"></i> Kepemimpinan Acara
+                </span>
+                <span class="font-mono text-xs text-slate-400">Maret 2024</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                Wakil Ketua Pelaksana P5 (Gaya Hidup Berkelanjutan)
+              </h3>
+              <p class="text-xs font-mono text-slate-500 mt-1 mb-3">PKBM Ki Hadjar Dewantara</p>
+              
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Mengkoordinasikan penyelenggaraan kegiatan Proyek Penguatan Profil Pelajar Pancasila (P5) bertema Gaya Hidup Berkelanjutan bagi peserta didik kesetaraan.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
+                <i data-lucide="leaf" class="w-4 h-4 text-emerald-500"></i> Kurikulum Merdeka P5
+              </span>
+              <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Penyelenggara Inti
+              </span>
+            </div>
+          </div>
+
+          <div class="project-card event p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-700 dark:bg-sky-950/60 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/50">
+                  <i data-lucide="camera" class="w-3.5 h-3.5"></i> Publikasi & Media
+                </span>
+                <span class="font-mono text-xs text-slate-400">Maret 2024</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                Sie Publikasi, Dekorasi & Dokumentasi Festival
+              </h3>
+              <p class="text-xs font-mono text-slate-500 mt-1 mb-3">Festival Anak Sholeh dan Sholehah V.2 PKBM</p>
+              
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Menghandle seluruh kebutuhan visual, dokumentasi fotografi/videografi, publikasi media sosial, serta penataan panggung acara berskala komunitas.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
+                <i data-lucide="image" class="w-4 h-4 text-sky-500"></i> Dokumentasi Media
+              </span>
+              <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Sukses Terlaksana
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 05: Sertifikasi & Penghargaan -->
+    <section id="sertifikasi" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
+      <div class="space-y-4 max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-brand-600 dark:text-brand-400">
+          <span class="w-6 h-[1px] bg-brand-500"></span> 05. Sertifikasi & Penghargaan Resmi
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Kredensial Profesional & Lisensi Kompetensi
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Tersertifikasi oleh badan nasional, kementerian hukum, dan lembaga pelatihan profesional.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm relative group hover:border-emerald-500/60 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 flex items-center justify-center font-bold text-xs mb-4">
+            BNSP
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 block mb-1">Desember 2025</span>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base leading-snug">Fasilitator Pemberdayaan Masyarakat</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Badan Nasional Sertifikasi Profesi (BNSP)</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+            <i data-lucide="check-check" class="w-3.5 h-3.5"></i> Sertifikat Kompetensi
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm relative group hover:border-brand-500/60 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-400 flex items-center justify-center font-bold text-xs mb-4">
+            HAKI
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 block mb-1">April 2025</span>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base leading-snug">Hak Cipta Program Komputer</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Kementerian Hukum RI (No: 000877188)</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-brand-600 dark:text-brand-400 font-semibold flex items-center gap-1">
+            <i data-lucide="check-check" class="w-3.5 h-3.5"></i> Terdaftar Resmi
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm relative group hover:border-amber-500/60 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-400 flex items-center justify-center font-bold text-xs mb-4">
+            EXCEL
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 block mb-1">Juni 2026</span>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base leading-snug">Microsoft Excel: Foundation to Mastery</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Entrefine Professional Training</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-amber-600 dark:text-amber-400 font-semibold flex items-center gap-1">
+            <i data-lucide="check-check" class="w-3.5 h-3.5"></i> Tingkat Lanjutan
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm relative group hover:border-purple-500/60 transition-all">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-400 flex items-center justify-center font-bold text-xs mb-4">
+            PKBM
+          </div>
+          <span class="text-[11px] font-mono text-slate-400 block mb-1">Mei 2024</span>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base leading-snug">Sertifikat Magang Staff Humas</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">PKBM Ki Hadjar Dewantara</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-purple-600 dark:text-purple-400 font-semibold flex items-center gap-1">
+            <i data-lucide="check-check" class="w-3.5 h-3.5"></i> Predikat Baik
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Transparansi Rekomendasi -->
+    <section class="py-16 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80 reveal-on-scroll">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="p-8 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center max-w-4xl mx-auto space-y-4">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-50 text-brand-600 dark:bg-brand-950 dark:text-brand-400 mb-1">
+            <i data-lucide="quote" class="w-6 h-6"></i>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+            Penilaian Resmi & Rekomendasi Kinerja
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Sesuai prinsip transparansi data dan kepatuhan informasi tanpa rekayasa teks, evaluasi kinerja Faris Izzul Haq dibuktikan secara nyata melalui predikat akademik <strong>Dengan Pujian (Cumlaude IPK 3.78)</strong> dari Universitas Negeri Malang dan <strong>Predikat Baik</strong> dari penugasan magang PKBM Ki Hadjar Dewantara.
+          </p>
+          <div class="pt-4 flex flex-wrap justify-center items-center gap-4 text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span class="flex items-center gap-1"><i data-lucide="award" class="w-4 h-4 text-brand-500"></i> Predikat Kelulusan Cumlaude</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-500"></i> Evaluasi Magang Humas: Predikat Baik</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><i data-lucide="file-text" class="w-4 h-4 text-sky-500"></i> Referensi Resmi Tersedia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: Smart AI Assistant (Hybrid Engine) -->
+    <section id="ai-assistant" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
+      <div class="space-y-4 max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400">
+          <span class="w-6 h-[1px] bg-indigo-500"></span> 06. Asisten AI & Analisis Kualifikasi (Smart Hybrid Engine)
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Eksplorasi Profil & Analisis Kecocokan Karir dengan AI
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Asisten pintar ini dibekali seluruh database rekam jejak resmi Faris Izzul Haq, S.Pd. Tanyakan kualifikasi, pengalaman, atau lakukan uji kecocokan dengan kriteria lowongan pekerjaan secara instan dan akurat.
+        </p>
+      </div>
+
+      <!-- AI Interactive Container Card -->
+      <div class="rounded-3xl border border-indigo-200/80 dark:border-indigo-900/60 bg-white dark:bg-slate-900 shadow-xl overflow-hidden">
+        
+        <!-- Tab Header Switcher -->
+        <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/90 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <button id="aiTabChatBtn" class="px-4 py-2 text-xs font-semibold rounded-xl bg-indigo-600 text-white shadow-sm transition-all flex items-center gap-1.5">
+              <i data-lucide="message-square-text" class="w-3.5 h-3.5"></i>
+              <span>Tanya Jawab Portofolio</span>
+            </button>
+            <button id="aiTabMatchBtn" class="px-4 py-2 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-all flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-500"></i>
+              <span>Analisis Kecocokan Job (JD Match)</span>
+            </button>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="aiEngineStatusBadge" class="text-[11px] font-mono font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full">
+              Engine Aktif & Siap Respon
+            </span>
+            <button id="openApiKeyConfigBtn" class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 ml-1" title="Konfigurasi API Key Gemini Pribadi (Opsional)">
+              <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+              <span>API Key</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 1: Interactive Chatbot -->
+        <div id="aiTabChatContent" class="p-6 sm:p-8 space-y-6">
+          
+          <!-- Sample Question Chips -->
+          <div class="space-y-2">
+            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block">Pertanyaan Cepat untuk HR / Rekruter:</span>
+            <div class="flex flex-wrap gap-2" id="aiQuickChips">
+              <button class="ai-chip text-left text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 transition-colors">
+                💡 Apa keahlian utama Faris dalam administrasi dan data?
+              </button>
+              <button class="ai-chip text-left text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 transition-colors">
+                🏢 Ceritakan pencapaian Faris selama magang di PKBM Ki Hadjar Dewantara.
+              </button>
+              <button class="ai-chip text-left text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 transition-colors">
+                🚚 Ceritakan tentang pengalaman operasional dan distribusi.
+              </button>
+              <button class="ai-chip text-left text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 transition-colors">
+                🎯 Mengapa Faris cocok untuk posisi Staf Operasional / Administrasi?
+              </button>
+            </div>
+          </div>
+
+          <!-- Chat History / Messages Display Area -->
+          <div id="aiChatMessages" class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 max-h-[380px] overflow-y-auto space-y-4 text-xs sm:text-sm">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm font-bold text-xs">
+                AI
+              </div>
+              <div class="p-3.5 rounded-2xl rounded-tl-none bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 leading-relaxed shadow-sm">
+                Halo! Saya Asisten AI representatif untuk <strong>Faris Izzul Haq, S.Pd.</strong> Saya telah dibekali seluruh informasi faktual dari CV resmi (Pendidikan Cumlaude UM IPK 3.78, spesialisasi administrasi terstruktur dan otomasi data, serta riwayat operasional). Silakan klik pertanyaan cepat di atas atau tanyakan hal spesifik yang ingin Anda ketahui!
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <form id="aiChatForm" class="flex items-center gap-2">
+            <input 
+              type="text" 
+              id="aiChatInput" 
+              placeholder="Ketik pertanyaan seputar profil, keahlian, atau pengalaman Faris..." 
+              required
+              class="flex-1 px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+            <button 
+              type="submit" 
+              id="aiChatSubmitBtn"
+              class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 shadow-sm transition-all hover:shadow-indigo-500/25 shrink-0"
+            >
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span class="hidden sm:inline">Tanyakan</span>
+            </button>
+          </form>
+
+        </div>
+
+        <!-- Tab 2: Job Description Match Analyzer -->
+        <div id="aiTabMatchContent" class="p-6 sm:p-8 space-y-6 hidden">
+          <div class="space-y-1">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <i data-lucide="scan-search" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
+              <span>Analisis Kecocokan Lowongan & Pembuat Surat Pengantar Otomatis</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              Tempelkan judul dan deskripsi kualifikasi lowongan kerja (misal: Administrasi Data, Fasilitator Pemberdayaan, Operasional Distribusi, Humas, dll). AI akan menghitung kesesuaian dan merumuskan surat pengantar (*pitch letter*) profesional.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <label for="jobTitleInput" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Posisi / Judul Pekerjaan</label>
+              <input type="text" id="jobTitleInput" placeholder="Contoh: Staff Administrasi & Pelaporan Data / Staff Operasional" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+
+            <div>
+              <label for="jobDescInput" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Deskripsi Pekerjaan / Kualifikasi yang Dicari</label>
+              <textarea id="jobDescInput" rows="4" placeholder="Tempelkan syarat pekerjaan di sini (contoh: Menguasai Microsoft Excel lanjutan, terbiasa mengelola arsip, mampu bekerja mandiri dan lapangan, komunikatif)..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+            </div>
+
+            <button type="button" id="analyzeJobBtn" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center gap-2 shadow-sm transition-all hover:shadow-indigo-500/25">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span>Analisis Kecocokan Profil & Buat Surat Pengantar</span>
+            </button>
+          </div>
+
+          <!-- Analysis Results Display Area -->
+          <div id="jobAnalysisResultArea" class="hidden p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono uppercase text-slate-400">Hasil Analisis Asisten AI</span>
+                <span id="jobMatchScoreBadge" class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                  92% Cocok
+                </span>
+              </div>
+              <button id="copyAnalysisBtn" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 font-medium">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Salin Surat Pengantar</span>
+              </button>
+            </div>
+            
+            <div id="jobAnalysisOutput" class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
+              <!-- Result generated here -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 07: Kontak -->
+    <section id="kontak" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
+      <div class="space-y-4 max-w-3xl mb-12">
+        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-brand-600 dark:text-brand-400">
+          <span class="w-6 h-[1px] bg-brand-500"></span> 07. Hubungi Saya
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Mari Berkolaborasi & Terhubung
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Terbuka untuk peluang kerja sama, rekrutmen profesional, proyek otomatisasi data, maupun program pemberdayaan masyarakat.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-5 space-y-4">
+          
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono uppercase text-slate-400 block">Domisili Resmi</span>
+                <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Kecamatan Wajak, Kabupaten Malang</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Jawa Timur, Indonesia</p>
+              </div>
+            </div>
+
+            <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 h-44 w-full relative bg-slate-100 dark:bg-slate-800">
+              <iframe
+                title="Peta Lokasi Kecamatan Wajak Kabupaten Malang"
+                src="https://maps.google.com/maps?q=Kecamatan+Wajak,+Kabupaten+Malang,+Jawa+Timur&t=&z=12&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                class="w-full h-full grayscale hover:grayscale-0 transition-all duration-300">
+              </iframe>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono uppercase text-slate-400 block">Telepon / WhatsApp</span>
+                <span class="text-sm font-bold text-slate-900 dark:text-white">088994158604</span>
+              </div>
+            </div>
+            <a href="https://wa.me/6288994158604" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1 transition-colors">
+              <span>Chat</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono uppercase text-slate-400 block">Alamat Email</span>
+                <span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate max-w-[180px] sm:max-w-none block">farisizzul335@gmail.com</span>
+              </div>
+            </div>
+            <button onclick="copyEmailToClipboard()" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center gap-1 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Salin</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="lg:col-span-7 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Kirim Pesan Langsung</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Pesan akan diteruskan langsung ke email resmi farisizzul335@gmail.com</p>
+          </div>
+
+          <form id="contactForm" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contactName" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Nama Lengkap</label>
+                <input type="text" id="contactName" required placeholder="Contoh: Budi Santoso" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+              </div>
+              <div>
+                <label for="contactEmail" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Email Anda</label>
+                <input type="email" id="contactEmail" required placeholder="budi@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+              </div>
+            </div>
+
+            <div>
+              <label for="contactSubject" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Perihal / Kebutuhan</label>
+              <input type="text" id="contactSubject" required placeholder="Tawaran Kerja / Diskusi Kolaborasi Data / Pelatihan" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+            </div>
+
+            <div>
+              <label for="contactMessage" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Isi Pesan</label>
+              <textarea id="contactMessage" rows="4" required placeholder="Tuliskan detail tawaran atau diskusi di sini..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+              <span class="text-[11px] text-slate-400 font-mono flex items-center gap-1">
+                <i data-lucide="lock" class="w-3.5 h-3.5"></i> Formulir Aman & Langsung
+              </span>
+              
+              <div class="flex items-center gap-2">
+                <button type="button" id="sendViaWhatsAppBtn" class="px-4 py-2.5 rounded-xl border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                  <span>Kirim via WA</span>
+                </button>
+
+                <button type="submit" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all hover:shadow-brand-500/25">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span>Kirim Pesan Email</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-10 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center font-bold text-xs">
+          FIH
+        </div>
+        <div class="text-xs text-slate-500 dark:text-slate-400">
+          © 2026 <strong>Faris Izzul Haq, S.Pd.</strong> Seluruh data diverifikasi sesuai dokumen CV resmi.
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="#hero" class="text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1">
+          <span>Kembali Ke Atas</span>
+          <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CV Modal Viewer -->
+  <div id="cvModal" class="fixed inset-0 z-[120] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[94vh]">
+      
+      <div id="cvModalHeaderActions" class="px-5 py-3.5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-900/90 shrink-0">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center">
+            <i data-lucide="file-badge-2" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white leading-none">Curriculum Vitae Resmi</h3>
+            <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Faris Izzul Haq, S.Pd. • Cumlaude UM</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="printCvBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors" title="Cetak atau Simpan sebagai PDF">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Cetak / PDF</span>
+          </button>
+          <button id="copyCvTextBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-brand-50 text-brand-700 dark:bg-brand-950 dark:text-brand-300 hover:bg-brand-100 dark:hover:bg-brand-900 transition-colors" title="Salin Teks Lengkap CV">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Salin CV</span>
+          </button>
+          <button id="closeCvModalBtn" class="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" aria-label="Tutup Modal CV">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="overflow-y-auto p-4 sm:p-8 bg-slate-100/50 dark:bg-slate-950/50">
+        <div id="cvDocumentPrintArea" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-10 shadow-sm max-w-3xl mx-auto space-y-6 text-slate-800 dark:text-slate-200 text-xs sm:text-sm">
+          
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 pb-6 border-b border-slate-200 dark:border-slate-800">
+            <div class="w-24 h-32 sm:w-28 sm:h-36 rounded-lg bg-[#c01b2a] shadow-md ring-2 ring-slate-200 dark:ring-slate-700 overflow-hidden shrink-0 relative flex items-center justify-center">
+              <img id="modalProfileImg" alt="Pas Foto Resmi Faris Izzul Haq" class="w-full h-full object-cover hidden">
+
+              <svg id="modalProfileSvg" viewBox="0 0 200 250" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="250" fill="#c01b2a" />
+                <circle cx="100" cy="90" r="85" fill="#ffffff" opacity="0.08" />
+                <path d="M12 250 L12 220 Q40 180 80 182 L120 182 Q160 180 188 220 L188 250 Z" fill="#14171d" />
+                <polygon points="100,195 72,158 92,156 100,172 108,156 128,158" fill="#f8fafc" />
+                <polygon points="95,172 105,172 107,185 100,240 93,185" fill="#090a0f" />
+                <path d="M84 135 L84 165 Q100 174 116 165 L116 135 Z" fill="#dfa887" />
+                <ellipse cx="100" cy="115" rx="34" ry="42" fill="#f8cfb5" />
+                <path d="M64 105 C62 82 76 60 100 58 C124 60 138 82 136 105 C132 94 125 80 100 80 C75 80 68 94 64 105 Z" fill="#15171c" />
+                <path d="M76 98 Q86 94 94 97" stroke="#1c1f26" stroke-width="2.6" stroke-linecap="round" fill="none" />
+                <path d="M124 98 Q114 94 106 97" stroke="#1c1f26" stroke-width="2.6" stroke-linecap="round" fill="none" />
+                <ellipse cx="85" cy="108" rx="4.5" ry="3.2" fill="#1a1d24" />
+                <ellipse cx="115" cy="108" rx="4.5" ry="3.2" fill="#1a1d24" />
+                <path d="M99 108 L98 122 Q100 125 104 123" stroke="#c58b6b" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                <path d="M91 133 Q100 138 109 133" stroke="#a4584e" stroke-width="2" stroke-linecap="round" fill="none" />
+              </svg>
+
+              <span class="absolute bottom-1 bg-black/60 backdrop-blur-xs text-white text-[8px] font-mono uppercase px-1.5 py-0.5 rounded tracking-wider">
+                PAS FOTO
+              </span>
+            </div>
+
+            <div class="text-center sm:text-left flex-1 space-y-2">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">FARIS IZZUL HAQ</h1>
+                <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Cumlaude (3.78)</span>
+              </div>
+              <p class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300">
+                Kecamatan Wajak, Kabupaten Malang, Jawa Timur
+              </p>
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1 text-xs text-slate-500 dark:text-slate-400 font-mono pt-1">
+                <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3.5 h-3.5 text-brand-600"></i> 088994158604</span>
+                <span class="flex items-center gap-1"><i data-lucide="mail" class="w-3.5 h-3.5 text-brand-600"></i> farisizzul335@gmail.com</span>
+                <span class="flex items-center gap-1"><i data-lucide="globe" class="w-3.5 h-3.5 text-brand-600"></i> Linked Portofolio</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div>
+            <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-600 dark:text-brand-400 pb-1 mb-2 border-b border-slate-200 dark:border-slate-800">
+              RINGKASAN PROFESIONAL
+            </h2>
+            <p class="leading-relaxed text-justify text-slate-700 dark:text-slate-300">
+              Lulusan Sarjana Pendidikan Nonformal Universitas Negeri Malang (IPK 3.78/Cumlaude) dengan spesialisasi administrasi terstruktur dan pengolahan data menggunakan Microsoft Excel lanjutan serta Google Workspace. Berpengalaman mengelola administrasi operasional, rantai distribusi, serta otomatisasi rekapitulasi data penjualan berbasis Telegram dan Google Sheets. Individu disiplin, teliti, dan adaptif dalam mengoptimalkan efisiensi alur kerja operasional.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-600 dark:text-brand-400 pb-1 mb-2 border-b border-slate-200 dark:border-slate-800">
+              PENDIDIKAN
+            </h2>
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-baseline font-bold text-slate-900 dark:text-white">
+                <span>Universitas Negeri Malang (UM) | Malang, Indonesia</span>
+                <span class="font-mono text-xs font-medium text-slate-500">2021 — 2026</span>
+              </div>
+              <div class="text-slate-700 dark:text-slate-300 font-medium">
+                Sarjana Pendidikan (S.Pd.), Pendidikan Nonformal • <strong class="text-emerald-600 dark:text-emerald-400">IPK: 3.78 / 4.00 (Dengan Pujian / Cumlaude)</strong>
+              </div>
+              <p class="italic text-slate-600 dark:text-slate-400">
+                Judul Skripsi: "Pola Pembelajaran Informal Pangkas Rambut Di Barberschool Turen"
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-600 dark:text-brand-400 pb-1 mb-3 border-b border-slate-200 dark:border-slate-800">
+              PENGALAMAN KERJA
+            </h2>
+            <div class="space-y-4">
+              
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-slate-900 dark:text-white">
+                  <span>UMKM Ritel Snack | Pasar Tradisional Wajak</span>
+                  <span class="font-mono text-xs font-medium text-slate-500">2020 — 2021</span>
+                </div>
+                <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1.5">Staff Penjualan dan Operasional</div>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 pl-1">
+                  <li>Melakukan opening closing gerai dan penataan barang sesuai tempat.</li>
+                  <li>Melakukan penjualan produk snack dari jam 04:00 - 11:00 AM.</li>
+                  <li>Mengidentifikasi produk terlaris dan melakukan pemesanan dari sales.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-slate-900 dark:text-white">
+                  <span>Supplier Unggas (Ayam dan Bebek) | Blayu, Wajak</span>
+                  <span class="font-mono text-xs font-medium text-slate-500">2021 — Sekarang</span>
+                </div>
+                <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1.5">Staff Distribusi (Part-time Kuliah)</div>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 pl-1">
+                  <li>Mengelola distribusi harian komoditas unggas mentah ke mitra rumah makan dengan ketepatan waktu pengiriman.</li>
+                  <li>Menjalin komunikasi rantai pasok dengan peternak rekanan guna menjaga stabilitas suplai harian.</li>
+                  <li>Merekapitulasi total penjualan harian menggunakan otomisasi Telegram to Google Sheet.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-slate-900 dark:text-white">
+                  <span>UMKM Warung | Pasar Tradisional Wajak</span>
+                  <span class="font-mono text-xs font-medium text-slate-500">2021 — Sekarang</span>
+                </div>
+                <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1.5">Staff Operasional (Part-time Kuliah)</div>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 pl-1">
+                  <li>Membantu mengelola operasional usaha minuman keluarga pada akhir pekan dan libur semester, dimulai sejak pukul 02:00 - 05:00 AM.</li>
+                  <li>Melayani customer di tempat dan melakukan pengiriman minuman di berbagai gerai di pasar.</li>
+                  <li>Menyiapkan, mencuci, dan memoles gelas agar kuota gelas bersih di rak siap pakai saat pesanan membludak.</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-600 dark:text-brand-400 pb-1 mb-3 border-b border-slate-200 dark:border-slate-800">
+              PENGALAMAN MAGANG
+            </h2>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-baseline font-bold text-slate-900 dark:text-white">
+                  <span>PKBM Ki Hadjar Dewantara | Kec. Sukun, Kota Malang</span>
+                  <span class="font-mono text-xs font-medium text-slate-500">Januari — April 2024</span>
+                </div>
+                <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1.5">Staff Humas</div>
+                <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 pl-1">
+                  <li>Melaksanakan sosialisasi ke masyarakat untuk merekrut dan mengajak anak putus sekolah agar mengikuti program Kejar Paket A, B dan C.</li>
+                  <li>Bertindak sebagai koordinator utama dalam komunikasi antara tim magang, Direktur PKBM, dan Dosen Pembimbing Lapangan.</li>
+                  <li>Mengelola dan menginput data siswa menggunakan rumus Microsoft Excel lanjutan (Rumus Dasar, XLOOKUP, Fungsi Logika) guna memastikan keakuratan administrasi akademik dan mengelola Google Workspace untuk sistem pengarsipan dokumen kelas yang lebih rapi dan terstruktur.</li>
+                  <li>Mengajar mata pelajaran Ilmu Komputer dan secara proaktif memberikan pendampingan bagi siswa.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-600 dark:text-brand-400 pb-1 mb-2 border-b border-slate-200 dark:border-slate-800">
+              PROYEK & PENGALAMAN KEPANITIAAN
+            </h2>
+            <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
+              <li><strong class="text-slate-900 dark:text-white">Kreator Program Komputer "Reverse Word" (2025):</strong> Mengembangkan game edukatif berbasis web. Berhasil mendapatkan sertifikat Hak Kekayaan Intelektual (HAKI) dari Kementerian Hukum RI (No. Pencatatan: 000877188).</li>
+              <li><strong class="text-slate-900 dark:text-white">Sutradara & Koordinator Tim Video Edukasi (Desember 2023):</strong> Menggagas ide kreatif, mendistribusikan peran, dan memimpin proses produksi hingga penyelesaian video edukasi.</li>
+              <li><strong class="text-slate-900 dark:text-white">Wakil Ketua Pelaksana P5 (Maret 2024):</strong> Mengkoordinasikan penyelenggaraan kegiatan Proyek Penguatan Profil Pelajar Pancasila (P5) bertema Gaya Hidup Berkelanjutan di PKBM Ki Hadjar Dewantara.</li>
+              <li><strong class="text-slate-900 dark:text-white">Sie Publikasi, Dekorasi, Dokumentasi (Maret 2024):</strong> Menghandle kebutuhan publikasi dan dokumentasi pada acara Festival Anak Sholeh dan Sholehah V.2 PKBM Ki Hadjar Dewantara.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-600 dark:text-brand-400 pb-1 mb-2 border-b border-slate-200 dark:border-slate-800">
+              SERTIFIKASI & PENGHARGAAN
+            </h2>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-600 dark:text-slate-300">
+              <li class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                <strong class="text-slate-900 dark:text-white block">Sertifikat Kompetensi Fasilitator Pemberdayaan Masyarakat</strong>
+                <span class="text-[11px] text-slate-500">Badan Nasional Sertifikasi Profesi (BNSP) • Des 2025</span>
+              </li>
+              <li class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                <strong class="text-slate-900 dark:text-white block">Sertifikat Magang Staff Humas (Predikat Baik)</strong>
+                <span class="text-[11px] text-slate-500">PKBM Ki Hadjar Dewantara • Mei 2024</span>
+              </li>
+              <li class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                <strong class="text-slate-900 dark:text-white block">Microsoft Excel: Foundation to Mastery</strong>
+                <span class="text-[11px] text-slate-500">Entrefine • Jun 2026</span>
+              </li>
+              <li class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                <strong class="text-slate-900 dark:text-white block">Hak Cipta (HAKI) Program Komputer</strong>
+                <span class="text-[11px] text-slate-500">Kementerian Hukum RI (No: 000877188) • Apr 2025</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-xs font-mono font-bold tracking-wider uppercase text-brand-600 dark:text-brand-400 pb-1 mb-2 border-b border-slate-200 dark:border-slate-800">
+              KEAHLIAN
+            </h2>
+            <div class="space-y-1.5 text-slate-600 dark:text-slate-300">
+              <p><strong class="text-slate-900 dark:text-white">Hard Skills:</strong> Microsoft Excel Intermediate (XLOOKUP, IFS, SUMIFS, COUNTIFS, Pivot), Microsoft Word, PowerPoint, Google Workspace, Otomatisasi Input Data (Integrasi Telegram ke Google Sheets via App Script), Administrasi Akademik, Humas.</p>
+              <p><strong class="text-slate-900 dark:text-white">Soft Skills:</strong> Pemecahan Masalah, Kepemimpinan Berbasis Proyek, Komunikasi Efektif, Manajemen Prioritas, Kedisiplinan Tinggi, Kerja Mandiri & Kolaboratif, Belajar Hal Baru.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="cvModalFooterActions" class="px-5 py-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-900/90 shrink-0">
+        <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+          Format ATS-Friendly • Data Resmi Faris Izzul Haq
+        </span>
+        <div class="flex items-center gap-2">
+          <button id="closeCvModalFooterBtn" class="px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            Tutup
+          </button>
+          <button id="printCvFooterBtn" class="px-4 py-2 text-xs font-semibold rounded-xl bg-brand-600 hover:bg-brand-700 text-white shadow-sm flex items-center gap-1.5 transition-colors">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Cetak Dokumen</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- API Key Configuration Modal (Optional) -->
+  <div id="apiKeyModal" class="fixed inset-0 z-[130] bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 w-full max-w-md p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+        <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
+          <i data-lucide="key-round" class="w-5 h-5"></i>
+          <h3 class="font-bold text-sm text-slate-900 dark:text-white">Pengaturan API Key Gemini</h3>
+        </div>
+        <button id="closeApiKeyModalBtn" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+        Sistem sudah memiliki <strong>Mesin Representasi Cerdas Bawaan</strong> yang langsung aktif tanpa API key. Namun jika Anda ingin menghubungkannya langsung dengan kuota <strong>Google Gemini 3 Flash</strong> milik Anda, Anda dapat memasukkan API Key di bawah ini:
+      </p>
+
+      <div>
+        <label for="customApiKeyInput" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Google AI Studio API Key</label>
+        <input type="password" id="customApiKeyInput" placeholder="AIzaSy..." class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white text-xs font-mono focus:ring-2 focus:ring-indigo-500">
+        <span class="text-[10px] text-slate-400 mt-1 block">API key hanya disimpan di browser Anda (Local Storage) dan tidak pernah dikirimkan ke server lain.</span>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button type="button" id="clearApiKeyBtn" class="text-xs text-rose-500 hover:underline">
+          Hapus Kunci (Gunakan Mode Lokal)
+        </button>
+        <button type="button" id="saveApiKeyBtn" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold">
+          Simpan Konfigurasi
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-[150] flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl border border-slate-700 dark:border-slate-200 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <i data-lucide="check-circle" id="toastIcon" class="w-4 h-4 text-emerald-400 dark:text-emerald-600"></i>
+    <span id="toastMessage" class="text-xs font-medium">Tindakan berhasil!</span>
+  </div>
+
+  <script>
+    // Authentic Primary Profile Dataset directly extracted from Faris Izzul Haq's CV
+    const PRIMARY_CV_DATA = {
+      nama: "Faris Izzul Haq",
+      gelar: "S.Pd.",
+      domisili: "Kecamatan Wajak, Kabupaten Malang, Jawa Timur",
+      telepon: "088994158604",
+      email: "farisizzul335@gmail.com",
+      ipk: "3.78",
+      statusBadge: "Tersertifikasi BNSP • Cumlaude Universitas Negeri Malang (IPK 3.78)",
+      ringkasan: "Lulusan Sarjana Pendidikan Nonformal Universitas Negeri Malang (IPK 3.78/Cumlaude) dengan spesialisasi administrasi terstruktur dan pengolahan data menggunakan Microsoft Excel lanjutan serta Google Workspace. Berpengalaman mengelola administrasi operasional, rantai distribusi, serta otomatisasi rekapitulasi data penjualan berbasis Telegram dan Google Sheets. Individu disiplin, teliti, dan adaptif dalam mengoptimalkan efisiensi alur kerja operasional.",
+      pendidikan: {
+        kampus: "Universitas Negeri Malang (UM)",
+        lokasi: "Malang, Indonesia",
+        jenjang: "Sarjana Pendidikan (S.Pd.), Pendidikan Nonformal",
+        tahun: "2021-2026",
+        ipk: "3.78 / 4.00 (Cumlaude)",
+        skripsi: "Pola Pembelajaran Informal Pangkas Rambut Di Barberschool Turen",
+      },
+      sertifikasi: [
+        { judul: "Fasilitator Pemberdayaan Masyarakat", penerbit: "Badan Nasional Sertifikasi Profesi (BNSP)", periode: "Desember 2025" },
+        { judul: "Hak Cipta Program Komputer", penerbit: "Kementerian Hukum RI (No: 000877188)", periode: "April 2025" },
+        { judul: "Microsoft Excel: Foundation to Mastery", penerbit: "Entrefine", periode: "Juni 2026" },
+        { judul: "Sertifikat Magang Staff Humas (Predikat Baik)", penerbit: "PKBM Ki Hadjar Dewantara", periode: "Mei 2024" }
+      ]
+    };
+
+    // System Prompt for Live Gemini API
+    const FARIS_AI_SYSTEM_PROMPT = `Anda adalah asisten AI representatif resmi untuk Faris Izzul Haq, S.Pd.
+Tugas Anda: menjawab pertanyaan rekruter, HRD, atau klien secara santun, profesional, lugas, dan 100% berbasis fakta dari CV resmi Faris Izzul Haq:
+- Nama: Faris Izzul Haq, S.Pd.
+- Domisili: Kecamatan Wajak, Kabupaten Malang, Jawa Timur. Kontak: 088994158604 / farisizzul335@gmail.com.
+- Pendidikan: S1 Pendidikan Nonformal Universitas Negeri Malang (2021 - 2026), IPK 3.78 (Cumlaude / Dengan Pujian).
+- Skripsi: "Pola Pembelajaran Informal Pangkas Rambut Di Barberschool Turen".
+- HAKI: Game Edukatif Web "Reverse Word" (Kemenkumham RI No. 000877188, April 2025).
+- Sertifikasi: BNSP Fasilitator Pemberdayaan (Des 2025), Microsoft Excel Foundation to Mastery oleh Entrefine (Jun 2026 - XLOOKUP, IFS, SUMIFS, COUNTIFS, Pivot), Sertifikat Magang PKBM (Mei 2024 - Predikat Baik).
+- Pengalaman Kerja & Magang:
+  1. PKBM Ki Hadjar Dewantara (Jan - Apr 2024): Magang Staff Humas. Sosialisasi ke masyarakat untuk rekrut anak putus sekolah, koordinator komunikasi tim/Direktur/DPL, menginput data siswa dengan Excel (XLOOKUP, Logika) dan Google Workspace, serta mengajar Ilmu Komputer.
+  2. Supplier Unggas Ayam dan Bebek (2021 - Sekarang): Staff Distribusi (Part-time Kuliah). Mengelola distribusi harian unggas ke mitra rumah makan dengan tepat waktu, komunikasi rantai pasok dengan peternak, rekapitulasi data penjualan menggunakan otomisasi Telegram to Google Sheet.
+  3. UMKM Warung Pasar Wajak (2021 - Sekarang): Staff Operasional (Part-time Kuliah). Mengelola operasional usaha minuman 02:00-05:00 AM, melayani customer dan pengiriman di pasar.
+  4. UMKM Ritel Snack (2020 - 2021): Staff Penjualan & Operasional. Opening/closing gerai, penjualan 04:00-11:00 AM, identifikasi produk terlaris.
+Format respon: Bahasa Indonesia yang rapi, profesional, dan terstruktur.`;
+
+    // Smart Client-Side Knowledge Base & NLP Engine (100% Guaranteed to work even without external API Key)
+    function generateSmartLocalResponse(query) {
+      const q = query.toLowerCase();
+
+      // Excel & Data Skills
+      if (q.includes('excel') || q.includes('data') || q.includes('rumus') || q.includes('pivot') || q.includes('xlookup') || q.includes('administrasi')) {
+        return `Keahlian administrasi data Faris Izzul Haq telah tersertifikasi secara resmi melalui pelatihan **Microsoft Excel: Foundation to Mastery** oleh Entrefine (Juni 2026).
+        
+Keahlian teknis yang dikuasai meliputi:
+- **Pencarian & Referensi Data**: Penguasaan mendalam rumus lanjutan seperti \`XLOOKUP\`.
+- **Fungsi Logika Kompleks**: Penggunaan \`IFS\`, \`SUMIFS\`, dan \`COUNTIFS\` untuk validasi ribuan data.
+- **Analisis & Pelaporan**: Pembuatan laporan dinamis menggunakan **Pivot Table**.
+- **Implementasi Nyata**: Diaplikasikan langsung saat magang di PKBM Ki Hadjar Dewantara untuk data siswa dan Google Workspace.`;
+      }
+
+      // Automasi & Telegram to Sheets
+      if (q.includes('otomasi') || q.includes('telegram') || q.includes('bot') || q.includes('apps script') || q.includes('coding') || q.includes('teknologi')) {
+        return `Faris memiliki kemampuan **Otomatisasi Alur Kerja (Workflow Automation)** yang telah diterapkan dalam dunia kerja nyata:
+        
+- **Integrasi Telegram ke Google Sheet**: Faris mempraktikkannya sebagai Staff Distribusi pada usaha Supplier Unggas (2021 - Sekarang). Data transaksi harian dikirim lewat chat Telegram dan secara otomatis direkap ke dalam tabel Google Sheets.
+- Hal ini secara drastis meningkatkan efisiensi dan mengurangi kesalahan manusia (human error) dalam pencatatan penjualan dan rantai pasok.`;
+      }
+
+      // Pendidikan, Skripsi, IPK & Kampus
+      if (q.includes('kuliah') || q.includes('pendidikan') || q.includes('ipk') || q.includes('skripsi') || q.includes('um') || q.includes('universitas') || q.includes('lulus')) {
+        return `Faris Izzul Haq adalah lulusan **Sarjana Pendidikan (S.Pd.)** program studi Pendidikan Nonformal dari **Universitas Negeri Malang (UM)** periode 2021 — 2026:
+
+- **Predikat Kelulusan**: Berhasil lulus dengan predikat kehormatan tertinggi **Cumlaude (Dengan Pujian)** dengan **IPK 3.78 / 4.00**.
+- **Judul Skripsi**: *"Pola Pembelajaran Informal Pangkas Rambut Di Barberschool Turen"*, meneliti bagaimana transfer keterampilan vokasional dapat berlangsung secara efektif di luar jalur formal.`;
+      }
+
+      // Sertifikasi & HAKI
+      if (q.includes('sertifikat') || q.includes('sertifikasi') || q.includes('bnsp') || q.includes('haki') || q.includes('reverse word') || q.includes('lisensi')) {
+        return `Faris Izzul Haq memegang 4 lisensi dan kredensial resmi:
+
+1. **Sertifikasi BNSP (Desember 2025)**: Sertifikat Kompetensi Profesi sebagai *Fasilitator Pemberdayaan Masyarakat* dari Badan Nasional Sertifikasi Profesi.
+2. **Hak Cipta (HAKI) Kemenkumham RI (April 2025)**: Surat Pencatatan Ciptaan Program Komputer No. **000877188** untuk karya game edukasi interaktif *"Reverse Word"*.
+3. **Microsoft Excel: Foundation to Mastery (Juni 2026)**: Sertifikasi kompetensi Excel lanjutan dari lembaga pelatihan profesional Entrefine.
+4. **Sertifikat Magang Humas Predikat Baik (Mei 2024)**: Dari PKBM Ki Hadjar Dewantara atas dedikasi dan kinerja optimal selama magang.`;
+      }
+
+      // Pengalaman Magang PKBM
+      if (q.includes('pkbm') || q.includes('hadjar') || q.includes('magang') || q.includes('sekolah') || q.includes('humas') || q.includes('kejar paket')) {
+        return `Selama magang di **PKBM Ki Hadjar Dewantara** (Januari — April 2024) sebagai Staff Humas, Faris bertanggung jawab atas:
+
+- **Sosialisasi & Rekrutmen**: Terjun langsung mengajak anak putus sekolah mengikuti program Kejar Paket A, B, dan C.
+- **Komunikasi Internal**: Menjadi koordinator utama dalam komunikasi tim magang, Direktur, dan Dosen.
+- **Administrasi Akademik**: Menginput data siswa menggunakan **Excel lanjutan** (XLOOKUP, Logika) dan mengelola **Google Workspace** untuk arsip dokumen.
+- **Pengajaran**: Mengajar Ilmu Komputer dan memberikan pendampingan bagi siswa.`;
+      }
+
+      // Pengalaman Kerja Lapangan / Operasional / Wajak / Distribusi
+      if (q.includes('operasional') || q.includes('kerja') || q.includes('pengalaman') || q.includes('wajak') || q.includes('distribusi') || q.includes('unggas') || q.includes('ayam')) {
+        return `Pengalaman kerja operasional Faris yang terbukti nyata:
+
+1. **Staff Distribusi (Supplier Unggas) (2021 - Sekarang)**: Mengelola distribusi unggas mentah ke rumah makan dengan ketepatan waktu pengiriman, komunikasi dengan peternak rekanan, dan otomatisasi rekap penjualan via Telegram to Google Sheets.
+2. **Staff Operasional (UMKM Warung) (2021 - Sekarang)**: Mengelola operasional minuman pada libur/akhir pekan pukul 02:00 - 05:00 AM, melayani pelanggan, dan menyiapkan inventaris di Pasar Tradisional Wajak.
+3. **Staff Penjualan & Operasional (UMKM Ritel Snack) (2020 - 2021)**: Bertanggung jawab opening/closing gerai, penjualan produk 04:00 - 11:00 AM, dan identifikasi produk terlaris.`;
+      }
+
+      // Kenapa Harus Rekrut Faris / Nilai Tambah
+      if (q.includes('mengapa') || q.includes('kenapa') || q.includes('cocok') || q.includes('kelebihan') || q.includes('alasan') || q.includes('rekrut')) {
+        return `Faris Izzul Haq memiliki kombinasi langka antara **ketelitian administrasi data** dan **daya juang operasional lapangan**:
+
+- **Kinerja Akademik & Otomasi Cerdas**: Lulusan Cumlaude UM (IPK 3.78) yang mahir Excel tingkat lanjut dan mempraktikkan otomasi Telegram-to-Google Sheets untuk operasional riil.
+- **Tahan Banting**: Memiliki disiplin waktu ekstrem (terbiasa bekerja pukul 02:00 - 05:00 AM di pasar) dan bertanggung jawab atas kelancaran rantai distribusi.
+- **Komunikasi Publik & Manajemen Relasi**: Tersertifikasi BNSP Fasilitator, sukses merekrut warga di PKBM, dan andal menjalin relasi dengan peternak rekanan dan mitra rumah makan.`;
+      }
+
+      // Kontak & Domisili
+      if (q.includes('kontak') || q.includes('hubungi') || q.includes('wa') || q.includes('nomor') || q.includes('email') || q.includes('alamat') || q.includes('tinggal') || q.includes('domisili')) {
+        return `Anda dapat langsung menghubungi Faris Izzul Haq melalui saluran resmi berikut:
+- **WhatsApp / Telepon**: [088994158604](https://wa.me/6288994158604)
+- **Email**: [farisizzul335@gmail.com](mailto:farisizzul335@gmail.com)
+- **Domisili**: Kecamatan Wajak, Kabupaten Malang, Jawa Timur.`;
+      }
+
+      // Default Intelligent Response
+      return `Terima kasih atas pertanyaannya! Berdasarkan CV ATS terbarunya, **Faris Izzul Haq, S.Pd.** adalah lulusan Cumlaude Universitas Negeri Malang (IPK 3.78) dengan spesialisasi *administrasi terstruktur, pengolahan data (Excel Advanced), dan otomatisasi alur kerja (Telegram to Google Sheet)*. 
+
+Anda dapat menanyakan hal lebih spesifik mengenai:
+1. Kemahiran Excel (XLOOKUP, IFS, Pivot).
+2. Pengalaman operasional distribusi logistik unggas atau manajemen pasar.
+3. Rekam jejak di PKBM Ki Hadjar Dewantara.
+4. Hubungi Faris langsung di WhatsApp **088994158604**.`;
+    }
+
+    // Local Job Description Match Analyzer
+    function generateSmartLocalJobMatch(jobTitle, jobDesc) {
+      const text = (jobTitle + " " + jobDesc).toLowerCase();
+      let matchScore = 78;
+      const strengths = [];
+
+      // Keyword detection
+      if (text.includes('excel') || text.includes('data') || text.includes('laporan') || text.includes('rekap') || text.includes('administrasi') || text.includes('admin')) {
+        matchScore += 8;
+        strengths.push("Tersertifikasi resmi dalam **Microsoft Excel: Foundation to Mastery** (Entrefine) dengan penguasaan formula XLOOKUP, logika IFS, dan Pivot Table untuk administrasi akurat dan efisien.");
+      }
+      if (text.includes('otomasi') || text.includes('sistem') || text.includes('google sheet') || text.includes('teknologi') || text.includes('it') || text.includes('komputer')) {
+        matchScore += 5;
+        strengths.push("Berpengalaman membangun **otomatisasi data** (Telegram to Google Sheets via Apps Script) di rantai distribusi nyata, serta pencipta Program Komputer ber-HAKI Kemenkumham RI.");
+      }
+      if (text.includes('pelatihan') || text.includes('sosial') || text.includes('komunikasi') || text.includes('humas') || text.includes('masyarakat') || text.includes('fasilitator') || text.includes('pendidikan')) {
+        matchScore += 6;
+        strengths.push("Memiliki Sertifikasi Profesi **BNSP Fasilitator Pemberdayaan Masyarakat** dan terbukti mampu menangani sosialisasi publik dan pengajaran saat magang di PKBM.");
+      }
+      if (text.includes('lapangan') || text.includes('operasional') || text.includes('logistik') || text.includes('gudang') || text.includes('pasar') || text.includes('distribusi') || text.includes('rantai pasok') || text.includes('supplier')) {
+        matchScore += 6;
+        strengths.push("Mempunyai daya tahan fisik dan kedisiplinan operasional yang tinggi. Terbukti dari manajemen rantai distribusi harian dengan ketepatan waktu pengiriman sejak tahun 2021.");
+      }
+
+      if (strengths.length === 0) {
+        strengths.push("Latar belakang akademik unggul (Cumlaude UM IPK 3.78) yang menunjukkan kemampuan belajar cepat (*fast learner*) dan dedikasi yang konsisten.");
+        strengths.push("Pengalaman kerja lapangan dan administrasi harian yang terbiasa memecahkan masalah (*problem solving*) operasional secara efisien.");
+      }
+
+      matchScore = Math.min(matchScore, 98);
+
+      const draftPitch = `Kepada Yth. Tim Rekruter / HRD,
+
+Melalui surat ini, saya bermaksud untuk melamar posisi ${jobTitle || 'yang dibuka di perusahaan Anda'}. Sebagai lulusan Universitas Negeri Malang dengan predikat Cumlaude (IPK 3.78), saya memadukan kemampuan analitis administrasi data dengan daya juang operasional yang kuat. 
+
+Saya tersertifikasi dalam pengolahan data Microsoft Excel tingkat lanjut (XLOOKUP, Fungsi Logika, Pivot) dan memiliki pengalaman nyata dalam mengoptimalkan efisiensi rantai distribusi menggunakan otomatisasi integrasi Telegram ke Google Sheets. Latar belakang saya sebagai pekerja lapangan dan administrator akademik memastikan bahwa saya dapat bekerja dengan teliti, disiplin, dan komunikatif di dalam tim.
+
+Besar harapan saya untuk berdiskusi lebih lanjut mengenai kontribusi positif yang dapat saya berikan. Terima kasih atas waktu dan kesempatan yang diberikan.
+
+Hormat saya,
+Faris Izzul Haq, S.Pd.
+Telepon/WA: 088994158604 | Email: farisizzul335@gmail.com`;
+
+      const responseText = `**Estimasi Kecocokan Profil**: **${matchScore}% Cocok**
+
+**Poin Keunggulan Utama Faris untuk Posisi Ini**:
+${strengths.map(s => `- ${s}`).join('\n')}
+
+**Draft Surat Pengantar / Pitch Profesional**:
+${draftPitch}`;
+
+      return { scoreText: `${matchScore}% Cocok`, outputText: responseText };
+    }
+
+    // Resilient Dual-Engine API Caller (Uses User Gemini API Key if provided, else falls back to local engine)
+    async function fetchAiResponse(promptQuery, isJobMatch = false, jobTitle = '', jobDesc = '') {
+      const storedKey = localStorage.getItem('fih_gemini_api_key') || "";
+
+      if (storedKey && storedKey.trim().length > 10) {
+        try {
+          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${storedKey.trim()}`;
+          const payload = {
+            contents: [{ parts: [{ text: promptQuery }] }],
+            systemInstruction: { parts: [{ text: FARIS_AI_SYSTEM_PROMPT }] }
+          };
+
+          const res = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (text) return { text, source: 'gemini' };
+          }
+        } catch (e) {
+          console.warn("Cloud API call unfulfilled, gracefully falling back to smart local knowledge engine.", e);
+        }
+      }
+
+      // Instant Fallback to Smart Client Knowledge Engine
+      if (isJobMatch) {
+        const result = generateSmartLocalJobMatch(jobTitle, jobDesc);
+        return { text: result.outputText, scoreText: result.scoreText, source: 'local' };
+      } else {
+        const text = generateSmartLocalResponse(promptQuery);
+        return { text, source: 'local' };
+      }
+    }
+
+    // State variable holds active data
+    let currentProfile = JSON.parse(JSON.stringify(PRIMARY_CV_DATA));
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      initPasFotoSystem();
+
+      // Preloader
+      const preloadBar = document.getElementById('preloadBar');
+      const preloader = document.getElementById('preloader');
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += 30;
+        if (preloadBar) preloadBar.style.width = progress + '%';
+        if (progress >= 100) {
+          clearInterval(progressInterval);
+          setTimeout(() => {
+            if (preloader) {
+              preloader.style.opacity = '0';
+              setTimeout(() => preloader.style.display = 'none', 600);
+            }
+          }, 200);
+        }
+      }, 60);
+
+      initTheme();
+      initScrollReveal();
+      initCustomCursor();
+      initNavbarScroll();
+      initGeminiAiFeatures();
+      initApiKeyConfigModal();
+    });
+
+    function initGeminiAiFeatures() {
+      const tabChatBtn = document.getElementById('aiTabChatBtn');
+      const tabMatchBtn = document.getElementById('aiTabMatchBtn');
+      const tabChatContent = document.getElementById('aiTabChatContent');
+      const tabMatchContent = document.getElementById('aiTabMatchContent');
+
+      if (tabChatBtn && tabMatchBtn) {
+        tabChatBtn.addEventListener('click', () => {
+          tabChatBtn.classList.add('bg-indigo-600', 'text-white');
+          tabChatBtn.classList.remove('text-slate-600', 'dark:text-slate-300');
+          tabMatchBtn.classList.remove('bg-indigo-600', 'text-white');
+          tabMatchBtn.classList.add('text-slate-600', 'dark:text-slate-300');
+          tabChatContent.classList.remove('hidden');
+          tabMatchContent.classList.add('hidden');
+        });
+
+        tabMatchBtn.addEventListener('click', () => {
+          tabMatchBtn.classList.add('bg-indigo-600', 'text-white');
+          tabMatchBtn.classList.remove('text-slate-600', 'dark:text-slate-300');
+          tabChatBtn.classList.remove('bg-indigo-600', 'text-white');
+          tabChatBtn.classList.add('text-slate-600', 'dark:text-slate-300');
+          tabMatchContent.classList.remove('hidden');
+          tabChatContent.classList.add('hidden');
+        });
+      }
+
+      const quickChips = document.querySelectorAll('.ai-chip');
+      const chatInput = document.getElementById('aiChatInput');
+      quickChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const cleanText = chip.textContent.replace(/^[💡🏢📜🎯🚚]\s*/, '').trim();
+          if (chatInput) {
+            chatInput.value = cleanText;
+            chatInput.focus();
+            document.getElementById('aiChatForm').dispatchEvent(new Event('submit'));
+          }
+        });
+      });
+
+      const openAiModalBtn = document.getElementById('openAiModalBtn');
+      const openAiModalBtnMobile = document.getElementById('openAiModalBtnMobile');
+      function scrollToAi() {
+        const el = document.getElementById('ai-assistant');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => {
+            if (chatInput) chatInput.focus();
+          }, 600);
+        }
+      }
+      if (openAiModalBtn) openAiModalBtn.addEventListener('click', scrollToAi);
+      if (openAiModalBtnMobile) openAiModalBtnMobile.addEventListener('click', scrollToAi);
+
+      const chatForm = document.getElementById('aiChatForm');
+      const chatMessages = document.getElementById('aiChatMessages');
+      const chatSubmitBtn = document.getElementById('aiChatSubmitBtn');
+
+      if (chatForm && chatMessages) {
+        chatForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const query = chatInput.value.trim();
+          if (!query) return;
+
+          appendChatMessage('user', query);
+          chatInput.value = '';
+          chatSubmitBtn.disabled = true;
+          chatSubmitBtn.classList.add('opacity-50');
+
+          const loadingId = 'loading-' + Date.now();
+          appendLoadingBubble(loadingId);
+
+          try {
+            // Smooth natural simulated reading delay
+            await new Promise(r => setTimeout(r, 450));
+            const result = await fetchAiResponse(query, false);
+            removeLoadingBubble(loadingId);
+            appendChatMessage('ai', result.text);
+          } catch (error) {
+            removeLoadingBubble(loadingId);
+            appendChatMessage('ai', generateSmartLocalResponse(query));
+          } finally {
+            chatSubmitBtn.disabled = false;
+            chatSubmitBtn.classList.remove('opacity-50');
+            if (window.lucide) window.lucide.createIcons();
+          }
+        });
+      }
+
+      function appendChatMessage(sender, text) {
+        const msgWrapper = document.createElement('div');
+        msgWrapper.className = sender === 'user' ? 'flex items-start justify-end gap-3' : 'flex items-start gap-3';
+
+        const formattedHtml = formatAiText(text);
+
+        if (sender === 'user') {
+          msgWrapper.innerHTML = `
+            <div class="p-3.5 rounded-2xl rounded-tr-none bg-indigo-600 text-white max-w-[85%] sm:max-w-[75%] leading-relaxed shadow-sm">
+              ${escapeHtml(text)}
+            </div>
+            <div class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center shrink-0 font-bold text-xs">
+              Anda
+            </div>
+          `;
+        } else {
+          msgWrapper.innerHTML = `
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm font-bold text-xs">
+              AI
+            </div>
+            <div class="p-3.5 rounded-2xl rounded-tl-none bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 leading-relaxed shadow-sm max-w-[90%] sm:max-w-[85%] space-y-2">
+              ${formattedHtml}
+            </div>
+          `;
+        }
+
+        chatMessages.appendChild(msgWrapper);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function appendLoadingBubble(id) {
+        const loader = document.createElement('div');
+        loader.id = id;
+        loader.className = 'flex items-start gap-3';
+        loader.innerHTML = `
+          <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm font-bold text-xs">
+            AI
+          </div>
+          <div class="p-3.5 rounded-2xl rounded-tl-none bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-500 dark:text-slate-400 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-500 animate-bounce"></span>
+            <span class="w-2 h-2 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.2s]"></span>
+            <span class="w-2 h-2 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.4s]"></span>
+            <span class="text-xs font-mono ml-1">Menganalisis profil Faris...</span>
+          </div>
+        `;
+        chatMessages.appendChild(loader);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function removeLoadingBubble(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+      }
+
+      function escapeHtml(string) {
+        const div = document.createElement('div');
+        div.innerText = string;
+        return div.innerHTML;
+      }
+
+      function formatAiText(text) {
+        let formatted = escapeHtml(text)
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/\n\s*-\s+(.*?)(?=\n|$)/g, '<li class="ml-4 list-disc">$1</li>')
+          .replace(/\n/g, '<br>');
+        return formatted;
+      }
+
+      // Job Description Match Analyzer
+      const analyzeJobBtn = document.getElementById('analyzeJobBtn');
+      const jobTitleInput = document.getElementById('jobTitleInput');
+      const jobDescInput = document.getElementById('jobDescInput');
+      const jobAnalysisResultArea = document.getElementById('jobAnalysisResultArea');
+      const jobAnalysisOutput = document.getElementById('jobAnalysisOutput');
+      const jobMatchScoreBadge = document.getElementById('jobMatchScoreBadge');
+      const copyAnalysisBtn = document.getElementById('copyAnalysisBtn');
+
+      if (analyzeJobBtn) {
+        analyzeJobBtn.addEventListener('click', async () => {
+          const title = (jobTitleInput ? jobTitleInput.value.trim() : '') || 'Posisi Terbuka';
+          const desc = jobDescInput ? jobDescInput.value.trim() : '';
+
+          if (!desc) {
+            showToast("Harap masukkan deskripsi pekerjaan atau kualifikasi!", false);
+            return;
+          }
+
+          analyzeJobBtn.disabled = true;
+          analyzeJobBtn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Menganalisis Kualifikasi...</span>`;
+          if (window.lucide) window.lucide.createIcons();
+
+          const promptText = `Lakukan analisis kecocokan profil antara CV Faris Izzul Haq dengan lowongan berikut:
+POSISI: ${title}
+DESKRIPSI: ${desc}
+Berikan perkiraan persentase kecocokan, poin keunggulan Faris, dan buatkan draft surat pengantar profesional.`;
+
+          try {
+            await new Promise(r => setTimeout(r, 600));
+            const result = await fetchAiResponse(promptText, true, title, desc);
+
+            if (jobAnalysisResultArea && jobAnalysisOutput) {
+              const matchMatch = result.text.match(/(\d{2,3})%/);
+              if (matchMatch && jobMatchScoreBadge) {
+                jobMatchScoreBadge.textContent = matchMatch[0] + ' Cocok';
+              } else if (result.scoreText && jobMatchScoreBadge) {
+                jobMatchScoreBadge.textContent = result.scoreText;
+              }
+              jobAnalysisOutput.innerHTML = formatAiText(result.text);
+              jobAnalysisResultArea.classList.remove('hidden');
+              showToast("Analisis kualifikasi selesai!");
+            }
+          } catch (err) {
+            const fallback = generateSmartLocalJobMatch(title, desc);
+            if (jobMatchScoreBadge) jobMatchScoreBadge.textContent = fallback.scoreText;
+            jobAnalysisOutput.innerHTML = formatAiText(fallback.outputText);
+            jobAnalysisResultArea.classList.remove('hidden');
+            showToast("Analisis kualifikasi selesai!");
+          } finally {
+            analyzeJobBtn.disabled = false;
+            analyzeJobBtn.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4"></i><span>Analisis Kecocokan Profil & Buat Surat Pengantar</span>`;
+            if (window.lucide) window.lucide.createIcons();
+          }
+        });
+      }
+
+      if (copyAnalysisBtn && jobAnalysisOutput) {
+        copyAnalysisBtn.addEventListener('click', () => {
+          const textToCopy = jobAnalysisOutput.innerText;
+          const tempInput = document.createElement("textarea");
+          tempInput.value = textToCopy;
+          tempInput.style.position = "fixed";
+          tempInput.style.left = "-9999px";
+          document.body.appendChild(tempInput);
+          tempInput.focus();
+          tempInput.select();
+
+          try {
+            document.execCommand('copy');
+            showToast("Hasil analisis & surat pengantar berhasil disalin!");
+          } catch (err) {
+            showToast("Gagal menyalin teks", false);
+          } finally {
+            document.body.removeChild(tempInput);
+          }
+        });
+      }
+    }
+
+    function initApiKeyConfigModal() {
+      const openBtn = document.getElementById('openApiKeyConfigBtn');
+      const modal = document.getElementById('apiKeyModal');
+      const closeBtn = document.getElementById('closeApiKeyModalBtn');
+      const saveBtn = document.getElementById('saveApiKeyBtn');
+      const clearBtn = document.getElementById('clearApiKeyBtn');
+      const keyInput = document.getElementById('customApiKeyInput');
+      const statusBadge = document.getElementById('aiEngineStatusBadge');
+
+      function updateStatusBadge() {
+        const hasKey = !!localStorage.getItem('fih_gemini_api_key');
+        if (statusBadge) {
+          if (hasKey) {
+            statusBadge.textContent = "Gemini Live API Aktif";
+            statusBadge.className = "text-[11px] font-mono font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full";
+          } else {
+            statusBadge.textContent = "Smart Engine Aktif";
+            statusBadge.className = "text-[11px] font-mono font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full";
+          }
+        }
+      }
+
+      updateStatusBadge();
+
+      if (openBtn && modal) {
+        openBtn.addEventListener('click', () => {
+          if (keyInput) keyInput.value = localStorage.getItem('fih_gemini_api_key') || "";
+          modal.classList.remove('hidden');
+        });
+      }
+
+      if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+      }
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.add('hidden');
+        });
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          const val = keyInput ? keyInput.value.trim() : "";
+          if (val) {
+            localStorage.setItem('fih_gemini_api_key', val);
+            showToast("API Key Gemini berhasil disimpan!");
+          }
+          modal.classList.add('hidden');
+          updateStatusBadge();
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          localStorage.removeItem('fih_gemini_api_key');
+          if (keyInput) keyInput.value = "";
+          showToast("Kembali ke Mode Pengetahuan Lokal!");
+          modal.classList.add('hidden');
+          updateStatusBadge();
+        });
+      }
+    }
+
+    function initTheme() {
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const savedTheme = localStorage.getItem('site-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark');
+          const isDark = document.documentElement.classList.contains('dark');
+          localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+          showToast(isDark ? 'Mode Gelap diaktifkan' : 'Mode Terang diaktifkan');
+        });
+      }
+    }
+
+    function initCustomCursor() {
+      const dot = document.getElementById('cursorDot');
+      const outline = document.getElementById('cursorOutline');
+      if (!dot || !outline) return;
+
+      let mouseX = 0, mouseY = 0;
+      let outlineX = 0, outlineY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      });
+
+      function animateOutline() {
+        outlineX += (mouseX - outlineX) * 0.18;
+        outlineY += (mouseY - outlineY) * 0.18;
+        outline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+        requestAnimationFrame(animateOutline);
+      }
+      requestAnimationFrame(animateOutline);
+
+      const interactives = document.querySelectorAll('a, button, input, textarea');
+      interactives.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+    }
+
+    function initScrollReveal() {
+      const elements = document.querySelectorAll('.reveal-on-scroll');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      elements.forEach(el => observer.observe(el));
+    }
+
+    function initNavbarScroll() {
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('bg-white/85', 'dark:bg-slate-950/85', 'backdrop-blur-md', 'border-slate-200/80', 'dark:border-slate-800/80', 'shadow-sm');
+          navbar.classList.remove('border-transparent');
+        } else {
+          navbar.classList.remove('bg-white/85', 'dark:bg-slate-950/85', 'backdrop-blur-md', 'border-slate-200/80', 'dark:border-slate-800/80', 'shadow-sm');
+          navbar.classList.add('border-transparent');
+        }
+      });
+
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileDrawer = document.getElementById('mobileMenuDrawer');
+      const hamburgerIcon = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+
+      if (mobileBtn && mobileDrawer) {
+        mobileBtn.addEventListener('click', () => {
+          const isHidden = mobileDrawer.classList.contains('hidden');
+          if (isHidden) {
+            mobileDrawer.classList.remove('hidden');
+            hamburgerIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+          } else {
+            mobileDrawer.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileDrawer.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          });
+        });
+      }
+    }
+
+    const filterBtns = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white');
+          b.classList.add('text-slate-600', 'dark:text-slate-300');
+        });
+        btn.classList.add('bg-brand-600', 'text-white');
+        btn.classList.remove('text-slate-600', 'dark:text-slate-300');
+
+        const filter = btn.getAttribute('data-filter');
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.classList.contains(filter)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    function showToast(message, isSuccess = true) {
+      const toast = document.getElementById('toastNotification');
+      const toastMessage = document.getElementById('toastMessage');
+      if (!toast || !toastMessage) return;
+
+      toastMessage.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3200);
+    }
+
+    function copyEmailToClipboard() {
+      const email = currentProfile.email || "farisizzul335@gmail.com";
+      const tempInput = document.createElement("textarea");
+      tempInput.value = email;
+      tempInput.style.position = "fixed";
+      tempInput.style.left = "-9999px";
+      document.body.appendChild(tempInput);
+      tempInput.focus();
+      tempInput.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast("Email berhasil disalin: " + email);
+      } catch (err) {
+        showToast("Gagal menyalin email", false);
+      } finally {
+        document.body.removeChild(tempInput);
+      }
+    }
+
+    const quickCopyBtn = document.getElementById('copyEmailQuickBtn');
+    if (quickCopyBtn) {
+      quickCopyBtn.addEventListener('click', copyEmailToClipboard);
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const subject = document.getElementById('contactSubject').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+
+        if (!name || !email || !message) {
+          showToast("Harap lengkapi semua bidang formulir!", false);
+          return;
+        }
+
+        const mailtoUrl = `mailto:${currentProfile.email}?subject=${encodeURIComponent(subject + " - dari " + name)}&body=${encodeURIComponent("Pengirim: " + name + " (" + email + ")\n\n" + message)}`;
+        window.location.href = mailtoUrl;
+        showToast("Membuka aplikasi email untuk mengirim pesan...");
+      });
+    }
+
+    const sendViaWhatsAppBtn = document.getElementById('sendViaWhatsAppBtn');
+    if (sendViaWhatsAppBtn) {
+      sendViaWhatsAppBtn.addEventListener('click', () => {
+        const name = document.getElementById('contactName').value.trim() || 'Pengunjung';
+        const message = document.getElementById('contactMessage').value.trim() || 'Halo, saya tertarik dengan profil dan portofolio Anda.';
+        const phone = (currentProfile.telepon || "088994158604").replace(/^0/, '62');
+        const waText = encodeURIComponent(`Halo Faris, saya ${name}.\n\n${message}`);
+        window.open(`https://wa.me/${phone}?text=${waText}`, '_blank');
+      });
+    }
+
+    const cvModal = document.getElementById('cvModal');
+    const openCvModalBtn = document.getElementById('openCvModalBtn');
+    const openCvModalBtnMobile = document.getElementById('openCvModalBtnMobile');
+    const closeCvModalBtn = document.getElementById('closeCvModalBtn');
+    const closeCvModalFooterBtn = document.getElementById('closeCvModalFooterBtn');
+    const printCvBtn = document.getElementById('printCvBtn');
+    const printCvFooterBtn = document.getElementById('printCvFooterBtn');
+    const copyCvTextBtn = document.getElementById('copyCvTextBtn');
+
+    function toggleCvModal(show) {
+      if (!cvModal) return;
+      if (show) {
+        cvModal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        cvModal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    if (openCvModalBtn) openCvModalBtn.addEventListener('click', () => toggleCvModal(true));
+    if (openCvModalBtnMobile) openCvModalBtnMobile.addEventListener('click', () => toggleCvModal(true));
+    if (closeCvModalBtn) closeCvModalBtn.addEventListener('click', () => toggleCvModal(false));
+    if (closeCvModalFooterBtn) closeCvModalFooterBtn.addEventListener('click', () => toggleCvModal(false));
+
+    if (cvModal) {
+      cvModal.addEventListener('click', (e) => {
+        if (e.target === cvModal) toggleCvModal(false);
+      });
+    }
+
+    function triggerPrintCv() {
+      window.print();
+    }
+    if (printCvBtn) printCvBtn.addEventListener('click', triggerPrintCv);
+    if (printCvFooterBtn) printCvFooterBtn.addEventListener('click', triggerPrintCv);
+
+    function initPasFotoSystem() {
+      const fileInput = document.getElementById('pasFotoFileInput');
+      const uploadTrigger = document.getElementById('triggerUploadBtn');
+      const uploadContainer = document.getElementById('avatarUploadContainer');
+      const cardImg = document.getElementById('cardProfileImg');
+      const cardSvg = document.getElementById('cardProfileSvg');
+      const modalImg = document.getElementById('modalProfileImg');
+      const modalSvg = document.getElementById('modalProfileSvg');
+      const resetBtn = document.getElementById('resetPhotoBtn');
+
+      const savedPhoto = localStorage.getItem('fih_custom_pas_foto');
+      if (savedPhoto) applyPhoto(savedPhoto);
+
+      function applyPhoto(dataUrl) {
+        if (cardImg && cardSvg) {
+          cardImg.src = dataUrl;
+          cardImg.classList.remove('hidden');
+          cardSvg.classList.add('hidden');
+        }
+        if (modalImg && modalSvg) {
+          modalImg.src = dataUrl;
+          modalImg.classList.remove('hidden');
+          modalSvg.classList.add('hidden');
+        }
+        if (resetBtn) resetBtn.classList.remove('hidden');
+      }
+
+      function clearPhoto() {
+        localStorage.removeItem('fih_custom_pas_foto');
+        if (cardImg && cardSvg) {
+          cardImg.src = '';
+          cardImg.classList.add('hidden');
+          cardSvg.classList.remove('hidden');
+        }
+        if (modalImg && modalSvg) {
+          modalImg.src = '';
+          modalImg.classList.add('hidden');
+          modalSvg.classList.remove('hidden');
+        }
+        if (resetBtn) resetBtn.classList.add('hidden');
+        showToast("Pas foto dikembalikan ke tampilan awal");
+      }
+
+      function handleFile(file) {
+        if (!file || !file.type.startsWith('image/')) {
+          showToast("Mohon pilih file gambar yang valid!", false);
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const result = e.target.result;
+          try {
+            localStorage.setItem('fih_custom_pas_foto', result);
+          } catch (err) {
+            console.warn("Storage quota exceeded, displaying in session.");
+          }
+          applyPhoto(result);
+          showToast("Pas foto resmi berhasil diperbarui!");
+        };
+        reader.readAsDataURL(file);
+      }
+
+      if (uploadTrigger && fileInput) {
+        uploadTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          fileInput.click();
+        });
+      }
+
+      if (uploadContainer && fileInput) {
+        uploadContainer.addEventListener('click', () => fileInput.click());
+
+        uploadContainer.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          uploadContainer.classList.add('scale-105');
+        });
+        uploadContainer.addEventListener('dragleave', () => {
+          uploadContainer.classList.remove('scale-105');
+        });
+        uploadContainer.addEventListener('drop', (e) => {
+          e.preventDefault();
+          uploadContainer.classList.remove('scale-105');
+          if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            handleFile(e.dataTransfer.files[0]);
+          }
+        });
+      }
+
+      if (fileInput) {
+        fileInput.addEventListener('change', (e) => {
+          if (e.target.files && e.target.files[0]) {
+            handleFile(e.target.files[0]);
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          clearPhoto();
+        });
+      }
+    }
+
+    if (copyCvTextBtn) {
+      copyCvTextBtn.addEventListener('click', () => {
+        const plainCvText = `FARIS IZZUL HAQ, S.Pd.
+Kecamatan Wajak, Kabupaten Malang, Jawa Timur
+Telepon: 088994158604 | Email: farisizzul335@gmail.com
+
+RINGKASAN PROFESIONAL:
+Lulusan Sarjana Pendidikan Nonformal Universitas Negeri Malang (IPK 3.78/Cumlaude) dengan spesialisasi administrasi terstruktur dan pengolahan data menggunakan Microsoft Excel lanjutan serta Google Workspace. Berpengalaman mengelola administrasi operasional, rantai distribusi, serta otomatisasi rekapitulasi data penjualan berbasis Telegram dan Google Sheets. Individu disiplin, teliti, dan adaptif dalam mengoptimalkan efisiensi alur kerja operasional.
+
+PENDIDIKAN:
+Universitas Negeri Malang (UM) (2021 - 2026)
+Sarjana Pendidikan (S.Pd.), Pendidikan Nonformal - IPK: 3.78 / 4.00 (Cumlaude)
+Judul Skripsi: Pola Pembelajaran Informal Pangkas Rambut Di Barberschool Turen
+
+PENGALAMAN KERJA:
+1. UMKM Ritel Snack | Pasar Tradisional Wajak (2020 - 2021) - Staff Penjualan dan Operasional
+2. Supplier Unggas (Ayam dan Bebek) | Blayu, Wajak (2021 - Sekarang) - Staff Distribusi
+3. UMKM Warung | Pasar Tradisional Wajak (2021 - Sekarang) - Staff Operasional
+
+PENGALAMAN MAGANG:
+- PKBM Ki Hadjar Dewantara | Kec. Sukun, Kota Malang (Januari - April 2024) - Staff Humas
+
+PROYEK & KEPANITIAAN:
+- Kreator Program Komputer "Reverse Word" (HAKI No: 000877188)
+- Sutradara & Koordinator Tim Video Edukasi
+- Wakil Ketua Pelaksana P5 PKBM Ki Hadjar Dewantara
+- Sie Publikasi, Dekorasi, Dokumentasi Festival Anak Sholeh dan Sholehah V.2
+
+SERTIFIKASI & PENGHARGAAN:
+- BNSP: Fasilitator Pemberdayaan Masyarakat (Desember 2025)
+- Sertifikat Magang Staff Humas (Predikat Baik) (Mei 2024)
+- Microsoft Excel: Foundation to Mastery (Juni 2026)
+- Hak Cipta (HAKI) Program Komputer RI (April 2025)
+
+KEAHLIAN:
+Hard Skills: Microsoft Excel Intermediate (XLOOKUP, IFS, SUMIFS, COUNTIFS, Pivot), Microsoft Word, PowerPoint, Google Workspace, Otomatisasi Input Data (Integrasi Telegram ke Google Sheets via App Script), Administrasi Akademik, Humas.
+Soft Skills: Pemecahan Masalah, Kepemimpinan Berbasis Proyek, Komunikasi Efektif, Manajemen Prioritas, Kedisiplinan Tinggi, Kerja Mandiri & Kolaboratif, Belajar Hal Baru.`;
+
+        const tempInput = document.createElement("textarea");
+        tempInput.value = plainCvText;
+        tempInput.style.position = "fixed";
+        tempInput.style.left = "-9999px";
+        document.body.appendChild(tempInput);
+        tempInput.focus();
+        tempInput.select();
+
+        try {
+          document.execCommand('copy');
+          showToast("Teks lengkap CV berhasil disalin ke clipboard!");
+        } catch (err) {
+          showToast("Gagal menyalin teks CV", false);
+        } finally {
+          document.body.removeChild(tempInput);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
